@@ -1,0 +1,13 @@
+name: dotfiles
+on: push
+jobs:
+  on-ubuntu-2004:                                 # 一意のジョブ ID
+    runs-on: ubuntu-20.04
+    uses: actions/checkout@v1
+    run: |
+      sudo apt-get update
+    name: build
+    run: make
+
+
+    
