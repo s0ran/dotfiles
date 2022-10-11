@@ -25,10 +25,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: msys2/setup-msys2@v2
-        with:
-          msystem: UCRT64
-          update: true
-          install: git make
+      with:
+        msystem: UCRT64
+        update: true
+        install: git make
     - name: setup
       run: pacman -Su
   on-mac:
