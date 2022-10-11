@@ -22,5 +22,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: setup
-      run: update-core & pacman -Su & pacman -S make
-      
+      run: update-core && pacman -Su && pacman -S make
