@@ -9,3 +9,11 @@ jobs:
       run: sudo apt update && sudo apt install -y make
     - name: build
       run: make
+  on-ubuntu-2204:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: setup
+      run: sudo apt update && sudo apt install -y make
+    - name: build
+      run: make
