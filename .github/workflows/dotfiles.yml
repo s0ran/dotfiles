@@ -30,7 +30,7 @@ jobs:
         update: true
         install: git make
     - name: setup
-      run: pacman -Su
+      run: pacman -Su && make --version
   on-mac:
     runs-on: macos12
     steps:
