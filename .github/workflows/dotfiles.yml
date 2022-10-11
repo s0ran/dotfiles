@@ -8,4 +8,4 @@ jobs:
     - name: setup
       run: apt update && apt install -y make sudo
     - name: build
-      run: make    
+      run: make build 
