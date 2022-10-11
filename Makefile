@@ -1,4 +1,4 @@
-PHONY: test-ubuntu2004 check-ubuntu2004
+.PHONY: test-ubuntu2004 check-ubuntu2004
 
 UNAME := $(shell uname)
 
