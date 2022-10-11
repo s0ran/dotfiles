@@ -6,6 +6,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: setup
-      run: apt update && apt install -y make sudo
+      run: sudo apt update && sudo apt install -y make
     - name: build
-      run: make build 
+      run: make
