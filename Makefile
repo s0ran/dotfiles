@@ -15,8 +15,10 @@ build:
 	@echo ${UNAME}
 
 all:
-	@echo test
+	@/bin/bash -c "`echo 'echo World'`"
+	@echo "`whoami`test"
 	@echo ${VPATH}
+
 git:
 	@echo "Installing git"
 	@sudo apt install -y git
@@ -48,7 +50,8 @@ ruby-old: build-essential curl
 	&& PATH=${PREFIX}/current/bin:${PATH}
 
 brew: ${BREW_SRC}
-	$(shell /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)")
+	@echo "Installing brew"
+	@/bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh`"
 
 brew-old: ${BREW_SRC}
 	@echo "Installing brew"
