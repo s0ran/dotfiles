@@ -4,8 +4,8 @@ UNAME := $(shell uname)
 PACKAGE_MANAGER = $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "brew"; else echo "apt-get"; fi)
 BREW_SRC := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "curl"; else echo "ruby curl build-essential git"; fi)
 HOMEBREW_PREFIX := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "/opt/homebrew"; else echo "/home/linuxbrew/.linuxbrew"; fi)
-GLOBAL_PATH:= $(shell echo "$$PATH")
-VPATH := $(shell pwd):${GLOBAL_PATH}
+export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
+VPATH := $(shell pwd):${PATH}
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
@@ -53,8 +53,8 @@ ruby-old: build-essential curl
 brew: ${BREW_SRC}
 	echo "Installing brew"
 	/bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh`"
-	export PATH=${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin:$$PATH
 	echo $$PATH
+	brew -v
 
 choco:
 	@echo "Installing choco"

@@ -8,7 +8,7 @@ jobs:
       - name: setup
         run: sudo apt update && sudo apt install -y make
       - name: brew
-        run: make brew && brew -v
+        run: make brew
   on-ubuntu-2204:
     runs-on: ubuntu-22.04
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: setup
         run: sudo apt update && sudo apt install -y make
       - name: brew
-        run: make brew && brew -v
+        run: make brew
   on-windows:
     runs-on: windows-latest
     defaults:
@@ -40,4 +40,4 @@ jobs:
       - name: setup
         run: make --version
       - name: brew
-        run: make brew && brew -v
+        run: make brew
