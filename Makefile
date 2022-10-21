@@ -48,7 +48,13 @@ brew: ${BREW_SRC}
 # Chocolatey Installation for Windows
 choco:
 	@echo "Installing choco"
-	powershell -Command {Set-ExecutionPolicy Bypass -Scope Process -Force\; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072\; iex \(\(New-Object System.Net.WebClient\).DownloadString\('https://chocolatey.org/install.ps1'\)\)}
+	powershell -Command {Set-ExecutionPolicy Bypass -Scope Process -Force\; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072\; iex \(\(New-Object System.Net.WebClient\).DownloadString\(\'https://chocolatey.org/install.ps1\'\)\)}
+
+#fish Installation
+fish: brew
+	@echo "Installing fish"
+	@brew install fish
+	@fish -v
 
 
 test-ubuntu2004:
