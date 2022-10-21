@@ -4,36 +4,38 @@ jobs:
   on-ubuntu-2004:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: setup
       run: sudo apt update && sudo apt install -y make
-    - name: build
-      run: make
+    - name: brew
+      run: make brew
   on-ubuntu-2204:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: setup
       run: sudo apt update && sudo apt install -y make
-    - name: build
-      run: make
+    - name: brew
+      run: make brew
   on-windows:
     runs-on: windows-latest
     defaults:
       run:
         shell: msys2 {0}
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: msys2/setup-msys2@v2
       with:
-        msystem: UCRT64
+        msystem: mingw64
         update: true
         install: git make
     - name: setup
       run: pacman -Su && make --version
   on-mac:
-    runs-on: macos12
+    runs-on: macos-12
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: setup
       run: make --version
+    - name: brew
+      run: make brew
