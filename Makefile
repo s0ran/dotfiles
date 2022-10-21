@@ -48,7 +48,7 @@ ruby-old: build-essential curl
 	&& PATH=${PREFIX}/current/bin:${PATH}
 
 brew: ${BREW_SRC}
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	$(shell /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)")
 
 brew-old: ${BREW_SRC}
 	@echo "Installing brew"
