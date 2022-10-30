@@ -9,16 +9,25 @@ VPATH := $(shell pwd):${PATH}
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
+HOME_DIR:=$(shell echo ~$(LOCAL_USER))
 
 # general
-build:
-	@echo ${UNAME}
-
 all:
 	@/bin/bash -c "`echo 'echo World'`"
 	@echo "`whoami`test"
 	@echo ${VPATH}
 	@echo $$PATH
+
+build:
+	@echo "Building the project"
+
+inspect: ~/.anyenv
+	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
+	@echo "USER: $(LOCAL_USER)"
+	@echo "HOME: $(HOME_DIR)"
+	@echo "UNAME: $(UNAME)"
+	@echo "PATH: $(PATH)"
+
 
 
 # Brew dependencies for Linux
@@ -45,17 +54,23 @@ brew: ${BREW_SRC}
 	@echo $$PATH
 	@brew -v
 
+~/.Brewfile:
+	cp Brewfile ~/.Brewfile
+
+# Install Brew Packages
+brew-packages: brew ~/.Brewfile
+	@brew bundle --global
+
+
 # Chocolatey Installation for Windows
 choco:
 	@echo "Installing choco"
 	powershell -NoProfile -ExecutionPolicy Bypass -Command "[System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
-# && SET PATH="%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+check-choco: choco
+	@which choco
 
 
-# Install Brew Packages
-brew-packages: brew
-	@brew bundle
 
 
 test-ubuntu2004:

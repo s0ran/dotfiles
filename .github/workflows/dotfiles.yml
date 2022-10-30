@@ -32,7 +32,7 @@ jobs:
       - name: setup
         run: pacman -Su && make --version
       - name: choco
-        run: make choco
+        run: make check-choco
   on-mac:
     runs-on: macos-12
     steps:
