@@ -5,11 +5,29 @@ PACKAGE_MANAGER = $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "brew"; else e
 BREW_SRC := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "curl"; else echo "ruby curl build-essential git"; fi)
 HOMEBREW_PREFIX := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "/opt/homebrew"; else echo "/home/linuxbrew/.linuxbrew"; fi)
 export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
-VPATH := $(shell pwd):${PATH}
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
 HOME_DIR:=$(shell echo ~$(LOCAL_USER))
+
+# eval for each OS
+ifeq ($(UNAME),Darwin)
+	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
+	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
+else ifeq ($(UNAME),Linux)
+	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
+	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
+else
+	PROGRAM_DATA_DIR:=C/ProgramData
+	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
+	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
+endif
+
+# eval VPATH
+VPATH := $(shell pwd):${PATH}
+
+# package path
+FISH_PATH := $(PACKAGE_ROOT)/fish
 
 # general
 all:
@@ -27,8 +45,7 @@ inspect: ~/.anyenv
 	@echo "HOME: $(HOME_DIR)"
 	@echo "UNAME: $(UNAME)"
 	@echo "PATH: $(PATH)"
-
-
+	@echo "VPATH: $(VPATH)"
 
 # Brew dependencies for Linux
 git:
@@ -59,7 +76,7 @@ brew: ${BREW_SRC}
 
 # Install Brew Packages
 brew-packages: brew ~/.Brewfile
-	@brew bundle --global
+	@brew bundle --global || true
 
 
 # Chocolatey Installation for Windows
@@ -67,12 +84,33 @@ choco:
 	@echo "Installing choco"
 	powershell -NoProfile -ExecutionPolicy Bypass -Command "[System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
-check-choco: choco
-	@which choco
+check-choco:
+	@echo "Checking choco"
+	@choco -v
 
 
+# SETUP FISH
+${FISH_PATH} : brew-packages
+~/.config/fish:
+	@mkdir -p ~/.config/fish
 
+~/.config/fish/config.fish: ~/.config/fish
+	@cp fish/config.fish ~/.config/fish/config.fish
 
+~/.config/fish/fish_plugins: ~/.config/fish
+	@cp fish/fish_plugins ~/.config/fish/fish_plugins
+
+chsh-fish: ${FISH_PATH}
+	@chsh -s $(FISH_PATH)
+	@echo $$SHELL
+
+check-fish: ~/.config/fish/config.fish ~/.config/fish/fish_plugins chsh-fish
+	@echo "Checking fish"
+	@fish -v
+	@echo $$SHELL
+	
+
+# Test
 test-ubuntu2004:
 	docker build -f test/ubuntu2004/Dockerfile . -ttest_ubuntu2004
 	docker run -v $(shell pwd):/home/docker -e LOCAL_UID=${LOCAL_UID} -e LOCAL_GID=${LOCAL_GID} --name test_ubuntu2004 -itd test_ubuntu2004 /bin/bash
