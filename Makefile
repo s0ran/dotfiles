@@ -51,11 +51,9 @@ choco:
 	powershell -Command {Set-ExecutionPolicy Bypass -Scope Process -Force\; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072\; iex \(\(New-Object System.Net.WebClient\).DownloadString\(\'https://chocolatey.org/install.ps1\'\)\)}
 	@choco
 
-#fish Installation
-fish: brew
-	@echo "Installing fish"
-	@brew install fish
-	@fish -v
+# Install Brew Packages
+brew-packages: brew
+	@brew bundle
 
 
 test-ubuntu2004:
