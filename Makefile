@@ -48,8 +48,10 @@ brew: ${BREW_SRC}
 # Chocolatey Installation for Windows
 choco:
 	@echo "Installing choco"
-	powershell -Command {Set-ExecutionPolicy Bypass -Scope Process -Force\; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072\; iex \(\(New-Object System.Net.WebClient\).DownloadString\(\'https://chocolatey.org/install.ps1\'\)\)}
-	@choco
+	@echo powershell -NoProfile -ExecutionPolicy Bypass -Command "[System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+
+# && SET PATH="%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
 
 # Install Brew Packages
 brew-packages: brew
