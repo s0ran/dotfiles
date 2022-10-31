@@ -101,7 +101,7 @@ ${FISH_PATH} : brew-packages
 	@cp fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish: ${FISH_PATH}
-	@chsh -s $(FISH_PATH)
+	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
 check-fish: ~/.config/fish/config.fish ~/.config/fish/fish_plugins chsh-fish
