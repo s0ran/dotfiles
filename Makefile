@@ -29,7 +29,7 @@ else
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
 	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
 	FISH_DEPENDENCIES := 
-	INSTALL_FISH := pacman -S fish
+	INSTALL_FISH := pacman -Syu fish
 endif
 
 # eval VPATH
@@ -134,8 +134,7 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@fish -v
 	@echo $$SHELL
 fisher: curl chsh-fish
-	@curl -sL https://git.io/fisher || source && \
-	fish -c "fisher install jorgebucaran/fisher"
+	@fish -c "curl -sL https://git.io/fisher || source && fisher install jorgebucaran/fisher"
 	@fish -c "fisher -v"
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fish -c "fisher update"
