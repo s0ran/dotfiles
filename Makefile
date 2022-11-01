@@ -116,7 +116,7 @@ endif
 
 chsh-fish: fish
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo "$(FISH_PATH) | sudo tee -a /etc/shells
+	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
@@ -132,8 +132,6 @@ fisher: curl chsh-fish
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fisher update
 	@fisher list
-
-
 
 # Test
 test-ubuntu2004:
