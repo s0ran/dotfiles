@@ -16,7 +16,7 @@ ifeq ($(UNAME),Darwin)
 	FISH_DEPENDENCIES := brew
 	INSTALL_FISH := brew install fish
 	BREW_SRC := curl
-	HOMEBREW_PREFIX
+	HOMEBREW_PREFIX := /opt/homebrew
 else ifeq ($(UNAME),Linux)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
@@ -125,8 +125,8 @@ endif
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish:fish ~/.config/fish/config.fish
-	@echo $(PATH)
-	@echo $$PATH
+	@echo "Make $(PATH)"
+	@echo "ENV $$PATH"
 	@which brew
 	@ls -la $(HOMEBREW_PREFIX)/bin
 ifeq ($(shell cat /etc/shells | grep fish),)
