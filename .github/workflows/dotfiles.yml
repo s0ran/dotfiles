@@ -39,6 +39,8 @@ jobs:
         run: make inspect
       - name: choco
         run: make check-choco
+      - name: fish
+        run: make chsh-fish
   on-mac:
     runs-on: macos-12
     steps:

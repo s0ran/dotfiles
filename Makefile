@@ -13,18 +13,23 @@ SHELL := /bin/bash
 MODE := "minimum"
 
 
-
 # eval for each OS
 ifeq ($(UNAME),Darwin)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
+	FISH_DEPENDENCIES := brew
+	INSTALL_FISH := brew install fish
 else ifeq ($(UNAME),Linux)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
+	FISH_DEPENDENCIES := brew
+	INSTALL_FISH := brew install fish
 else
 	PROGRAM_DATA_DIR:=/c/ProgramData
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
 	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
+	FISH_DEPENDENCIES := 
+	INSTALL_FISH := pacman -S fish
 endif
 
 # eval VPATH
@@ -99,9 +104,9 @@ check-choco: choco
 
 # SETUP FISH
 ifeq ($(MODE), "minimum")
-fish: brew
+fish: $(FISH_DEPENDENCIES)
 	@echo "Installing fish"
-	@brew install fish
+	@$(INSTALL_FISH)
 else
 fish: brew-packages
 endif
@@ -129,10 +134,10 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 fisher: curl chsh-fish
 	@curl -sL https://git.io/fisher || source && \
 	fisher install jorgebucaran/fisher	
-	@$(shell fisher -v)
+	@fish -c "fisher -v"
 fish-packages: fisher ~/.config/fish/fish_plugins
-	@fisher update
-	@fisher list
+	@fish -c "fisher update"
+	@fish -c "fisher list"
 
 # Test
 test-ubuntu2004:
