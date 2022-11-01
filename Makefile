@@ -48,6 +48,7 @@ inspect:
 	@echo "USER: $(LOCAL_USER)"
 	@echo "HOME: $(HOME_DIR)"
 	@echo "UNAME: $(UNAME)"
+	@echo "SHELL: $(SHELL)"
 	@echo "PATH: $(PATH)"
 	@echo "VPATH: $(VPATH)"
 
@@ -114,9 +115,9 @@ endif
 	@cp fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish: fish
-	ifeq ($(shell cat /etc/shells | grep fish),)
-		@echo "$(FISH_PATH) | sudo tee -a /etc/shells
-	endif
+ifeq ($(shell cat /etc/shells | grep fish),)
+	@echo "$(FISH_PATH) | sudo tee -a /etc/shells
+endif
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
