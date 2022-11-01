@@ -99,11 +99,11 @@ check-choco: choco
 
 # SETUP FISH
 ifeq ($(MODE), "minimum")
-	fish: brew
-		@echo "Installing fish"
-		@brew install fish
+fish: brew
+	@echo "Installing fish"
+	@brew install fish
 else
-	fish: brew-packages
+fish: brew-packages
 endif
 ~/.config/fish:
 	@mkdir -p ~/.config/fish
