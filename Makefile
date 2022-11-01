@@ -114,6 +114,8 @@ fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	@echo $(PATH)
 	@which fish
+	@echo $(SHELL)
+	@echo $$SHELL
 else
 fish: brew-packages
 endif
@@ -131,11 +133,12 @@ chsh-fish:fish ~/.config/fish/config.fish
 	@echo "ENV $$PATH"
 	@which brew
 	@which fish
+	@$(shell which fish)
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo $(FISH_PATH) | sudo tee -a /etc/shells
+	@echo `which fish` | sudo tee -a /etc/shells
 endif
 	@cat /etc/shells
-	@sudo chsh -s $(FISH_PATH)
+	@sudo chsh -s `which fish`
 
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
