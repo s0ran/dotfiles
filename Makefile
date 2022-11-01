@@ -29,7 +29,7 @@ else
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
 	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
 	FISH_DEPENDENCIES := 
-	INSTALL_FISH := pacman -Syu fish
+	INSTALL_FISH := pacman -S --noconfirm fish
 endif
 
 # eval VPATH
@@ -120,7 +120,7 @@ endif
 ~/.config/fish/fish_plugins: ~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
-chsh-fish:fish
+chsh-fish:fish ~/.config/fish/config.fis
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
