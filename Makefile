@@ -1,10 +1,6 @@
 .PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
 
 UNAME := $(shell uname)
-PACKAGE_MANAGER = $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "brew"; else echo "apt-get"; fi)
-BREW_SRC := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "curl"; else echo "ruby curl build-essential git"; fi)
-HOMEBREW_PREFIX := $(shell if [ "$(UNAME)" = "Darwin" ]; then echo "/opt/homebrew"; else echo "/home/linuxbrew/.linuxbrew"; fi)
-export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
@@ -19,11 +15,15 @@ ifeq ($(UNAME),Darwin)
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
 	INSTALL_FISH := brew install fish
+	BREW_SRC := curl
+	HOMEBREW_PREFIX
 else ifeq ($(UNAME),Linux)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
 	INSTALL_FISH := brew install fish
+	BREW_SRC := curl build-essential git ruby
+	HOMEBREW_PREFIX:= /home/linuxbrew/.linuxbrew
 else
 	PROGRAM_DATA_DIR:=/c/ProgramData
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
@@ -32,7 +32,7 @@ else
 	PACMAN_INSTALL := pacman -S --noconfirm
 	INSTALL_FISH := $(PACMAN_INSTALL) fish
 sudo: 
-	$(PACMAN_INSTALL) sudo
+	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
 endif
 
 # eval VPATH
