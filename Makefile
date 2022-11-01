@@ -31,8 +31,6 @@ else
 	FISH_DEPENDENCIES := 
 	PACMAN_INSTALL := pacman -S --noconfirm
 	INSTALL_FISH := $(PACMAN_INSTALL) fish
-sudo: 
-	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
 endif
 
 # eval VPATH
@@ -50,10 +48,9 @@ all:
 
 build:
 	@echo "Building the project"
-build/windows: sudo
-	@echo "Building the project for Windows"
-	make chsh-fish
-
+build/windows: sudo fish
+sudo:
+	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
