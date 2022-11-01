@@ -115,16 +115,17 @@ endif
 	@mkdir -p ~/.config/fish
 
 ~/.config/fish/config.fish: ~/.config/fish
-	@cp fish/config.fish ~/.config/fish/config.fish
+	@cp config/fish/config.fish ~/.config/fish/config.fish
 
 ~/.config/fish/fish_plugins: ~/.config/fish
-	@cp fish/fish_plugins ~/.config/fish/fish_plugins
+	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
-chsh-fish: fish
+chsh-fish:fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
 	@cat /etc/shells
+	@echo $(FISH_PATH)
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
@@ -134,8 +135,7 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo $$SHELL
 fisher: curl chsh-fish
 	@curl -sL https://git.io/fisher || source && \
-	fisher install jorgebucaran/fisher
-	@fish -v	
+	fish -c "fisher install jorgebucaran/fisher"
 	@fish -c "fisher -v"
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fish -c "fisher update"
