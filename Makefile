@@ -43,7 +43,7 @@ all:
 build:
 	@echo "Building the project"
 
-inspect: ~/.anyenv
+inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
 	@echo "HOME: $(HOME_DIR)"
@@ -90,6 +90,9 @@ choco:
 
 check-choco: choco
 	@echo "Checking choco"
+	@echo $(PATH)
+	@echo $(VPATH)
+	@$(CHOCOLATEY_ROOT)/bin/choco -v
 	@choco -v
 
 
