@@ -98,11 +98,11 @@ check-choco: choco
 
 # SETUP FISH
 ifeq ($(MODE), "minimum")
-$(FISH_PATH): brew
-	@echo "Installing fish"
-	@brew install fish
+	fish: brew
+		@echo "Installing fish"
+		@brew install fish
 else
-${FISH_PATH} : brew-packages
+	fish: brew-packages
 endif
 ~/.config/fish:
 	@mkdir -p ~/.config/fish
@@ -113,7 +113,7 @@ endif
 ~/.config/fish/fish_plugins: ~/.config/fish
 	@cp fish/fish_plugins ~/.config/fish/fish_plugins
 
-chsh-fish: ${FISH_PATH}
+chsh-fish: fish
 	ifeq ($(shell cat /etc/shells | grep fish),)
 		@echo "$(FISH_PATH) | sudo tee -a /etc/shells
 	endif
@@ -124,11 +124,11 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
 	@echo $$SHELL
-fisher: curl
+fisher: curl chsh-fish
 	@curl -sL https://git.io/fisher || source && \
 	fisher install jorgebucaran/fisher	
 	@fisher -v
-fish-packages: fish fisher ~/.config/fish/fish_plugins
+fish-packages: fisher ~/.config/fish/fish_plugins
 	@fisher update
 	@fisher list
 
