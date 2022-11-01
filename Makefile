@@ -107,6 +107,7 @@ ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@echo "Installing fish"
 	@$(INSTALL_FISH)
+	@which fish
 else
 fish: brew-packages
 endif
@@ -133,7 +134,8 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo $$SHELL
 fisher: curl chsh-fish
 	@curl -sL https://git.io/fisher || source && \
-	fisher install jorgebucaran/fisher	
+	fisher install jorgebucaran/fisher
+	@fish -v	
 	@fish -c "fisher -v"
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fish -c "fisher update"
