@@ -29,7 +29,10 @@ else
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
 	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
 	FISH_DEPENDENCIES := 
-	INSTALL_FISH := pacman -S --noconfirm fish
+	PACMAN_INSTALL := pacman -S --noconfirm
+	INSTALL_FISH := $(PACMAN_INSTALL) fish
+sudo: 
+	$(PACMAN_INSTALL) sudo
 endif
 
 # eval VPATH
@@ -47,6 +50,9 @@ all:
 
 build:
 	@echo "Building the project"
+build/windows: sudo
+	@echo "Building the project for Windows"
+	make chsh-fish
 
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
