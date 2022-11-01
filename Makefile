@@ -134,7 +134,7 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@fish -v
 	@echo $$SHELL
 fisher: curl chsh-fish
-	@fish -c "curl -sL https://git.io/fisher || source && fisher install jorgebucaran/fisher"
+	@fish -c "curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher"
 	@fish -c "fisher -v"
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fish -c "fisher update"
