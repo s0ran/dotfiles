@@ -107,11 +107,18 @@ chsh-fish: ${FISH_PATH}
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
-check-fish: ~/.config/fish/config.fish ~/.config/fish/fish_plugins chsh-fish
+check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
 	@echo $$SHELL
-	
+fisher: curl
+	@curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher	
+	@which fisher
+fish-packages: fish fisher ~/.config/fish/fish_plugins
+	@fisher update
+	@fisher list
+
+
 
 # Test
 test-ubuntu2004:
