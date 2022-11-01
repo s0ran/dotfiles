@@ -11,19 +11,21 @@ MODE := "minimum"
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
+	HOMEBREW_PREFIX := /opt/homebrew
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
 	INSTALL_FISH := brew install fish
 	BREW_SRC := curl
-	HOMEBREW_PREFIX := /opt/homebrew
+	
 else ifeq ($(UNAME),Linux)
+	HOMEBREW_PREFIX:= /home/linuxbrew/.linuxbrew
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
 	INSTALL_FISH := brew install fish
 	BREW_SRC := curl build-essential git ruby
-	HOMEBREW_PREFIX:= /home/linuxbrew/.linuxbrew
+	
 else
 	PROGRAM_DATA_DIR:=/c/ProgramData
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
@@ -128,7 +130,6 @@ chsh-fish:fish ~/.config/fish/config.fish
 	@echo "Make $(PATH)"
 	@echo "ENV $$PATH"
 	@which brew
-	@ls -la $(HOMEBREW_PREFIX)/bin
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
