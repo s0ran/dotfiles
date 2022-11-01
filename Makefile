@@ -101,6 +101,9 @@ ${FISH_PATH} : brew-packages
 	@cp fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish: ${FISH_PATH}
+	ifeq ($(shell cat /etc/shells | grep fish),)
+		@echo "$(FISH_PATH) | sudo tee -a /etc/shells
+	endif
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
