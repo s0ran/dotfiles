@@ -31,7 +31,7 @@ endif
 VPATH := $(shell pwd):${PATH}
 
 # package path
-FISH_PATH := $(PACKAGE_ROOT)/fish
+FISH_PATH = $(shell which fish)
 
 # general
 all:
@@ -118,6 +118,7 @@ chsh-fish: fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
+	@cat /etc/shells
 	@sudo chsh -s $(FISH_PATH)
 	@echo $$SHELL
 
