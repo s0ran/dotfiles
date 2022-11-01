@@ -120,7 +120,7 @@ endif
 ~/.config/fish/fish_plugins: ~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
-chsh-fish:fish ~/.config/fish/config.fis
+chsh-fish:fish ~/.config/fish/config.fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
