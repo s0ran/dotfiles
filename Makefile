@@ -22,7 +22,7 @@ else ifeq ($(UNAME),Linux)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 else
-	PROGRAM_DATA_DIR:=C/ProgramData
+	PROGRAM_DATA_DIR:=/c/ProgramData
 	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
 	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
 endif
@@ -114,7 +114,7 @@ endif
 	@cp fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish: fish
-	ifeq ($(shell cat /etc/shells | grep fish),)
+	ifeq ("$(shell cat /etc/shells | grep fish)","")
 		@echo "$(FISH_PATH) | sudo tee -a /etc/shells
 	endif
 	@sudo chsh -s $(FISH_PATH)
