@@ -130,6 +130,7 @@ chsh-fish:fish ~/.config/fish/config.fish
 	@echo "Make $(PATH)"
 	@echo "ENV $$PATH"
 	@which brew
+	@ls -la $(HOMEBREW_PREFIX)/bin
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
