@@ -41,7 +41,7 @@ endif
 VPATH := $(shell pwd):${PATH}
 
 # package path
-FISH_PATH :=
+FISH_PATH := $(shell which fish)
 
 include Makefiles/choco.mk Makefiles/fish.mk  
 
@@ -51,8 +51,6 @@ all:
 	@echo "`whoami`test"
 	@echo ${VPATH}
 	@echo $$PATH
-	@echo $(SHELL)
-	$(eval SHELL := $(FISH_PATH))
 	@echo $(SHELL)
 
 

@@ -39,8 +39,8 @@ fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	@echo $(INSTALL_FISH)
 	@which fish
-	@echo $(shell which fish)
-	@export FISH_PATH=`which fish`
+	@echo $(value FISH_PATH)
+	$(eval FISH_PATH := $(value FISH_PATH))
 	@echo $(FISH_PATH)
 	@echo $$FISH_PATH
 else
