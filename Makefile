@@ -42,7 +42,6 @@ VPATH := $(shell pwd):${PATH}
 
 # package path
 FISH_PATH = $(shell which fish)
-.SHELLFLAGS := -e
 
 
 include Makefiles/choco.mk Makefiles/fish.mk  
@@ -59,7 +58,6 @@ all:
 	echo $${FISH_PATH}
 	echo $(shell env |grep FISH)
 	env |grep FISH
-
 
 build:
 	@echo "Building the project"
