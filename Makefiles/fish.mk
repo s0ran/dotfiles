@@ -60,10 +60,11 @@ endif
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish:fish ~/.config/fish/config.fish
-ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo `which fish` | sudo tee -a /etc/shells
-endif
 	$(eval FISH_PATH := $(shell which fish))
+	@echo $(FISH_PATH)
+ifeq ($(shell cat /etc/shells | grep fish),)
+	@echo $(FISH_PATH) | sudo tee -a /etc/shells
+endif
 	$(eval SHELL := $(FISH_PATH))
 	@sudo chsh -s $(FISH_PATH)
 
