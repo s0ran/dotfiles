@@ -41,7 +41,6 @@ endif
 VPATH := $(shell pwd):${PATH}
 
 # package path
-FISH_PATH_COMMAND = $(which fish)
 FISH_PATH := 
 
 include Makefiles/choco.mk Makefiles/fish.mk  
