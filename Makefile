@@ -54,10 +54,6 @@ all:
 	@echo ${VPATH}
 	@echo $$PATH
 	@echo $(SHELL)
-	env |grep FISH
-	echo $${FISH_PATH}
-	echo $(shell env |grep FISH)
-	env |grep FISH
 
 build:
 	@echo "Building the project"

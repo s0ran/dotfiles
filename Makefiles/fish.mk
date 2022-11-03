@@ -20,22 +20,14 @@ endif
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 	@echo "Installing fish functions"
-	@echo $(SHELL)
-	@echo $(.SHELLFLAGS)
-	@echo $(FISH_PATH)
-	$(shell which fish)
-	which fish
-	echo $(shell which fish)
-	env | grep FISH
-	$(shell env|grep FISH)
 ~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 chsh-fish: |fish ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo $(FISH_PATH) | sudo tee -a /etc/shells
+	@echo $$FISH_PATH | sudo tee -a /etc/shells
 endif
-	$(eval SHELL := $(FISH_PATH))
-	@sudo chsh -s $(FISH_PATH)
+	$(eval SHELL := $$FISH_PATH)
+	@sudo chsh -s $$FISH_PATH
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
