@@ -40,8 +40,9 @@ fish: $(FISH_DEPENDENCIES)
 	@echo $(INSTALL_FISH)
 	@echo which fish
 	@echo $(shell which fish)
-	$(eval export FISH_PATH := $(shell which fish))
+	@export FISH_PATH=`which fish`
 	@echo $(FISH_PATH)
+	@echo $$FISH_PATH
 else
 fish: brew-packages
 endif
