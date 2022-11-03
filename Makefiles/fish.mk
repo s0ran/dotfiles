@@ -10,7 +10,12 @@ sudo:
 ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
-	@echo $(FISH_PATH)
+	echo $FISH_PATH
+	echo $$FISH_PATH
+	echo $(FISH_PATH)
+	echo $$(FISH_PATH)
+	echo $$$(FISH_PATH)
+
 else
 fish: brew-packages
 endif
@@ -24,10 +29,10 @@ endif
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 chsh-fish: |fish ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo $$FISH_PATH | sudo tee -a /etc/shells
+	echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
-	$(eval SHELL := $$FISH_PATH)
-	@sudo chsh -s $$FISH_PATH
+	$(eval SHELL := $(FISH_PATH))
+	＠sudo chsh -s $(FISH_PATH)
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
