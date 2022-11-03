@@ -23,6 +23,8 @@ endif
 	@echo $(SHELL)
 	@echo $(.SHELLFLAGS)
 	@echo $(FISH_PATH)
+	env
+	$(shell env)
 ~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 chsh-fish: |fish ~/.config/fish/config.fish 
