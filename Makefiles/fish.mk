@@ -43,7 +43,6 @@ check-choco: choco
 	@$(CHOCOLATEY_ROOT)/bin/choco -v
 	@choco -v
 
-
 # SETUP FISH
 ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
@@ -54,24 +53,27 @@ endif
 ~/.config/fish:
 	@mkdir -p ~/.config/fish
 
-~/.config/fish/config.fish: ~/.config/fish
+~/.config/fish/config.fish: |~/.config/fish
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 
-~/.config/fish/fish_plugins: ~/.config/fish
+~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 
 chsh-fish:fish ~/.config/fish/config.fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo `which fish` | sudo tee -a /etc/shells
 endif
-	@sudo chsh -s `which fish`
+	$(eval FISH_PATH := $(shell which fish))
+	$(eval SHELL := $(FISH_PATH))
+	@sudo chsh -s $(FISH_PATH)
+
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
 	@echo $$SHELL
 fisher: curl chsh-fish
-	@fish -c "curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher"
-	@fish -c "fisher -v"
+	@curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher
+	@fisher -v
 fish-packages: fisher ~/.config/fish/fish_plugins
-	@fish -c "fisher update"
-	@fish -c "fisher list"
+	@fisher update
+	@fisher list

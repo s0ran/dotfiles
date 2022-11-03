@@ -42,7 +42,7 @@ endif
 VPATH := $(shell pwd):${PATH}
 
 # package path
-FISH_PATH = $(shell which fish)
+FISH_PATH :=
 
 include Makefiles/fish.mk
 
