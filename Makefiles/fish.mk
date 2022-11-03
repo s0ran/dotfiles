@@ -47,6 +47,9 @@ endif
 ~/.config/fish/config.fish: |~/.config/fish
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
+	@echo "Installing fish functions"
+	@echo $(SHELL)
+	@echo $(.SHELLFLAGS)
 
 ~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
