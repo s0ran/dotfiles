@@ -38,7 +38,7 @@ ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	@echo $(INSTALL_FISH)
-	$(eval FISH_PATH := $(shell which fish))
+	$(eval export FISH_PATH := $(shell which fish))
 else
 fish: brew-packages
 endif
