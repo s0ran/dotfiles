@@ -41,17 +41,24 @@ endif
 VPATH := $(shell pwd):${PATH}
 
 # package path
-FISH_PATH := 
+FISH_PATH = $(shell which fish)
+.SHELLFLAGS := -e
+
 
 include Makefiles/choco.mk Makefiles/fish.mk  
 
 # general
 all:
+	set -e
 	@/bin/bash -c "`echo 'echo World'`"
 	@echo "`whoami`test"
 	@echo ${VPATH}
 	@echo $$PATH
 	@echo $(SHELL)
+	env |grep FISH
+	echo $${FISH_PATH}
+	echo $(shell env |grep FISH)
+	env |grep FISH
 
 
 build:
@@ -65,7 +72,6 @@ inspect:
 	@echo "SHELL: $(SHELL)"
 	@echo "PATH: $(PATH)"
 	@echo "VPATH: $(VPATH)"
-
 
 # Test
 test-ubuntu2004:

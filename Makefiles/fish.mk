@@ -1,33 +1,6 @@
-# Brew dependencies for Linux
-git:
-	@echo "Installing git"
-	@sudo apt install -y git
 
-build-essential:
-	@echo "Installing build-essential"
-	@sudo apt install -y build-essential
+include Makefiles/brew.mk
 
-curl:
-	@echo "Installing curl"
-	@sudo apt install -y curl
-
-ruby:
-	@echo "Installing ruby"
-	@sudo apt install -y ruby
-
-# Brew Installation for Mac, Linux
-brew: ${BREW_SRC}
-	@echo "Installing brew"
-	@/bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh`"
-	@echo $$PATH
-	@brew -v
-
-~/.Brewfile:
-	cp Brewfile ~/.Brewfile
-
-# Install Brew Packages
-brew-packages: brew ~/.Brewfile
-	@brew bundle --global || true
 # Dependencies for Windows
 sudo:
 	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
@@ -37,7 +10,6 @@ sudo:
 ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
-	$(eval FISH_PATH:= $$(shell which fish))
 	@echo $(FISH_PATH)
 else
 fish: brew-packages
