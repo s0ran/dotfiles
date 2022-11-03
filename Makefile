@@ -1,5 +1,5 @@
 .PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
-.SHELLFLAGS :=
+.SHELLFLAGS := -ec
 
 export
 UNAME := $(shell uname)
