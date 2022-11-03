@@ -1,5 +1,6 @@
 .PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
-
+.INCLUDE_DIRS: Makefiles
+export
 UNAME := $(shell uname)
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
@@ -15,7 +16,8 @@ ifeq ($(UNAME),Darwin)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
-	INSTALL_FISH := brew install fish
+	BREW_INSTALL := brew install
+	INSTALL_FISH := $(BREW_INSTALL) fish
 	BREW_SRC := curl
 	
 else ifeq ($(UNAME),Linux)
@@ -23,7 +25,8 @@ else ifeq ($(UNAME),Linux)
 	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
 	FISH_DEPENDENCIES := brew
-	INSTALL_FISH := brew install fish
+	BREW_INSTALL := brew install
+	INSTALL_FISH := $(BREW_INSTALL) fish
 	BREW_SRC := curl build-essential git ruby
 	
 else
@@ -41,18 +44,22 @@ VPATH := $(shell pwd):${PATH}
 # package path
 FISH_PATH = $(shell which fish)
 
+include Makefiles/fish.mk
+
 # general
 all:
 	@/bin/bash -c "`echo 'echo World'`"
 	@echo "`whoami`test"
 	@echo ${VPATH}
 	@echo $$PATH
+	@echo $(SHELL)
+	$(eval SHELL := $(FISH_PATH))
+	@echo $(SHELL)
+
 
 build:
 	@echo "Building the project"
 build/windows: sudo fish
-sudo:
-	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
@@ -62,94 +69,6 @@ inspect:
 	@echo "PATH: $(PATH)"
 	@echo "VPATH: $(VPATH)"
 
-# Brew dependencies for Linux
-git:
-	@echo "Installing git"
-	@sudo apt install -y git
-
-build-essential:
-	@echo "Installing build-essential"
-	@sudo apt install -y build-essential
-
-curl:
-	@echo "Installing curl"
-	@sudo apt install -y curl
-
-ruby:
-	@echo "Installing ruby"
-	@sudo apt install -y ruby
-
-# Brew Installation for Mac, Linux
-brew: ${BREW_SRC}
-	@echo "Installing brew"
-	@/bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh`"
-	@echo $$PATH
-	@brew -v
-
-~/.Brewfile:
-	cp Brewfile ~/.Brewfile
-
-# Install Brew Packages
-brew-packages: brew ~/.Brewfile
-	@brew bundle --global || true
-
-
-# Chocolatey Installation for Windows
-choco:
-	@echo "Installing choco"
-	powershell -NoProfile -ExecutionPolicy Bypass -Command "[System.Net.WebRequest]::DefaultWebProxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
-
-check-choco: choco
-	@echo "Checking choco"
-	@echo $(PATH)
-	@echo $(VPATH)
-	@$(CHOCOLATEY_ROOT)/bin/choco -v
-	@choco -v
-
-
-# SETUP FISH
-ifeq ($(MODE), "minimum")
-fish: $(FISH_DEPENDENCIES)
-	@echo "Installing fish"
-	@$(INSTALL_FISH)
-	@echo $(PATH)
-	@which fish
-	@echo $(SHELL)
-	@echo $$SHELL
-else
-fish: brew-packages
-endif
-~/.config/fish:
-	@mkdir -p ~/.config/fish
-
-~/.config/fish/config.fish: ~/.config/fish
-	@cp config/fish/config.fish ~/.config/fish/config.fish
-
-~/.config/fish/fish_plugins: ~/.config/fish
-	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
-
-chsh-fish:fish ~/.config/fish/config.fish
-	@echo "Make $(PATH)"
-	@echo "ENV $$PATH"
-	@which brew
-	@which fish
-	@$(shell which fish)
-ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo `which fish` | sudo tee -a /etc/shells
-endif
-	@cat /etc/shells
-	@sudo chsh -s `which fish`
-
-check-fish: ~/.config/fish/config.fish chsh-fish
-	@echo "Checking fish"
-	@fish -v
-	@echo $$SHELL
-fisher: curl chsh-fish
-	@fish -c "curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher"
-	@fish -c "fisher -v"
-fish-packages: fisher ~/.config/fish/fish_plugins
-	@fish -c "fisher update"
-	@fish -c "fisher list"
 
 # Test
 test-ubuntu2004:
