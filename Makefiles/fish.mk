@@ -43,18 +43,15 @@ fish: brew-packages
 endif
 ~/.config/fish:
 	@mkdir -p ~/.config/fish
-
 ~/.config/fish/config.fish: |~/.config/fish
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 	@echo "Installing fish functions"
 	@echo $(SHELL)
 	@echo $(.SHELLFLAGS)
-
 ~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
-
-chsh-fish:fish ~/.config/fish/config.fish
+chsh-fish: |fish ~/.config/fish/config.fish
 	@echo $(FISH_PATH)
 	$(eval FISH_PATH := $(shell which fish))
 	@echo $(FISH_PATH)
@@ -63,7 +60,6 @@ ifeq ($(shell cat /etc/shells | grep fish),)
 endif
 	$(eval SHELL := $(FISH_PATH))
 	@sudo chsh -s $(FISH_PATH)
-
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
