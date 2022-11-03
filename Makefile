@@ -1,4 +1,6 @@
 .PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
+.SHELLFLAGS :=
+
 export
 UNAME := $(shell uname)
 LOCAL_USER:=$(shell whoami)
@@ -43,12 +45,10 @@ VPATH := $(shell pwd):${PATH}
 # package path
 FISH_PATH = $(shell which fish)
 
-
 include Makefiles/choco.mk Makefiles/fish.mk  
 
 # general
 all:
-	set -e
 	@/bin/bash -c "`echo 'echo World'`"
 	@echo "`whoami`test"
 	@echo ${VPATH}
