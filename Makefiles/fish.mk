@@ -37,7 +37,7 @@ sudo:
 ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
-	$(eval FISH_PATH = $(value FISH_PATH))
+	$(eval FISH_PATH := $(value FISH_PATH_COMMAND))
 	@echo $(FISH_PATH)
 else
 fish: brew-packages
