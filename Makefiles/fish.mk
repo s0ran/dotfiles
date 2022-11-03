@@ -15,6 +15,9 @@ fish: $(FISH_DEPENDENCIES)
 	echo $(FISH_PATH)
 	echo $$(FISH_PATH)
 	echo $$$(FISH_PATH)
+	echo ${FISH_PATH}
+	echo $${FISH_PATH}
+	echo $$${FISH_PATH}
 
 else
 fish: brew-packages
