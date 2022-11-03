@@ -38,7 +38,7 @@ ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	@echo $(INSTALL_FISH)
-	@echo which fish
+	@which fish
 	@echo $(shell which fish)
 	@export FISH_PATH=`which fish`
 	@echo $(FISH_PATH)
