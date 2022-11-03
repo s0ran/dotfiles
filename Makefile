@@ -1,5 +1,4 @@
 .PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
-.INCLUDE_DIRS: Makefiles
 export
 UNAME := $(shell uname)
 LOCAL_USER:=$(shell whoami)
@@ -44,7 +43,7 @@ VPATH := $(shell pwd):${PATH}
 # package path
 FISH_PATH :=
 
-include Makefiles/fish.mk
+include Makefiles/choco.mk Makefiles/fish.mk  
 
 # general
 all:
