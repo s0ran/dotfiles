@@ -23,14 +23,16 @@ endif
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 	@echo "Installing fish functions"
+
 ~/.config/fish/fish_plugins: |~/.config/fish
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
+
 chsh-fish: |fish ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
-	echo `which fish` | sudo tee -a /etc/shells
+	@echo `which fish` | sudo tee -a /etc/shells
 endif
-	sudo chsh -s `which fish`
-	$(eval SHELL := `which fish`)
+	@sudo chsh -s `which fish`
+	$(eval SHELL := $(variable which fish))
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
