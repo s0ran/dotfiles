@@ -12,7 +12,7 @@ fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	echo $(.VARIABLES)
 	echo $(MAKELEVEL)
-	echo  $(origin FISH_PATH
+	echo  $(origin FISH_PATH)
 
 else
 fish: brew-packages
