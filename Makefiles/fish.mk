@@ -10,7 +10,6 @@ sudo:
 ifeq ($(MODE), "minimum")
 fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
-	echo $(.VARIABLES)
 	echo $(MAKELEVEL)
 	echo  $(origin FISH_PATH)
 
