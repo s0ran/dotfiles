@@ -1,6 +1,8 @@
 
 include Makefiles/brew.mk
 
+FISH_PATH = $(shell which fish)
+
 # Dependencies for Windows
 sudo:
 	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
