@@ -15,7 +15,7 @@ fish: $(FISH_DEPENDENCIES)
 	echo $(MAKELEVEL)
 	echo  $(origin FISH_PATH)
 	echo "shell env"
-	$(shell env)
+	$(eval $(shell env))
 	echo "env"
 	env 
 
