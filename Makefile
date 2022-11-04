@@ -66,6 +66,8 @@ inspect:
 	@echo "SHELL: $(SHELL)"
 	@echo "PATH: $(PATH)"
 	@echo "VPATH: $(VPATH)"
+	@echo "VARIABLES: $(.VARIABLES)"
+	@echo "MAKELEVEL: $(MAKELEVEL)"
 
 # Test
 test-ubuntu2004:
