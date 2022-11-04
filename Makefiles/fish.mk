@@ -16,6 +16,7 @@ fish: $(FISH_DEPENDENCIES)
 	echo  $(origin FISH_PATH)
 	echo "shell env"
 	$(eval $(shell env))
+	$(eval $(shell export FISH_PATH=$$(which fish)))
 	echo "env"
 	env 
 
