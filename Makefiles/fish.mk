@@ -29,10 +29,11 @@ endif
 
 chsh-fish: |fish ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
+	@echo `which fish`
 	@echo `which fish` | sudo tee -a /etc/shells
 endif
 	@sudo chsh -s `which fish`
-	$(eval SHELL := $(variable which fish))
+$(eval SHELL := $(variable which fish))
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
