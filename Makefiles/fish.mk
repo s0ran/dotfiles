@@ -14,6 +14,10 @@ fish: $(FISH_DEPENDENCIES)
 	@$(INSTALL_FISH)
 	echo $(MAKELEVEL)
 	echo  $(origin FISH_PATH)
+	echo "shell env"
+	$(shell env)
+	echo "env"
+	env 
 
 else
 fish: brew-packages
@@ -30,7 +34,7 @@ chsh-fish: |fish ~/.config/fish/config.fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 	echo $(FISH_PATH) | sudo tee -a /etc/shells
 endif
-	＠sudo chsh -s $(FISH_PATH)
+	sudo chsh -s $(FISH_PATH)
 	$(eval SHELL := $(FISH_PATH))
 check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
