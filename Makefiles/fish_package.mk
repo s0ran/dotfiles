@@ -1,9 +1,7 @@
 .PHONY: all
 SHELL := $(shell which fish)
 
-all:
-	$(MAKE) fisher
-	$(MAKE) fish-packages
+all: fish-packages
 ~/.config/fish/fish_plugins:
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 fisher:
