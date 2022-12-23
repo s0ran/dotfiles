@@ -34,7 +34,7 @@ all:
 build:
 	$(MAKE) check-fish
 	
-build/windows: |dependencies
+build/windows:
 	$(MAKE) --makefile=Makefiles/fish.mk all
 
 build/macos:

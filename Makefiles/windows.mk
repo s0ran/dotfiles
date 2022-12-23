@@ -8,6 +8,3 @@ PACMAN_INSTALL := pacman -S --noconfirm
 INSTALL_FISH := $(PACMAN_INSTALL) fish
 FISH_PATH ?= /usr/bin/fish
 FISH_DEPENDENCIES := 
-
-dependencies:
-	$(PACMAN_INSTALL) base-devel
