@@ -1,6 +1,3 @@
-
-include Makefiles/brew.mk
-
 FISH_PATH = $(shell which fish)
 
 # fishがインストールされていれば、fishのシェルが登録されているかチェックする

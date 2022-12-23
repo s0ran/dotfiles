@@ -9,10 +9,8 @@ LOCAL_GID:=$(shell id -g $(LOCAL_USER))
 HOME_DIR:=$(shell echo ~$(LOCAL_USER))
 SHELL := /bin/bash
 MODE := "minimum"
-
 # package path
 FISH_PATH := $(shell which fish)
-
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
