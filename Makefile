@@ -16,13 +16,7 @@ FISH_PATH := $(shell which fish)
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
-	HOMEBREW_PREFIX := /opt/homebrew
-	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
-	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
-	FISH_DEPENDENCIES := brew
-	BREW_INSTALL := brew install
-	INSTALL_FISH := $(BREW_INSTALL) fish
-	BREW_SRC := curl
+	include Makefiles/macos.mk
 	
 else ifeq ($(UNAME),Linux)
 	HOMEBREW_PREFIX:= /home/linuxbrew/.linuxbrew
@@ -51,6 +45,10 @@ build:
 	$(MAKE) check-fish
 	
 build/windows: |dependencies
+	$(MAKE) --makefile=Makefiles/fish.mk all
+
+build/mac:
+	$(MAKE) --makefile=Makefiles/brew.mk all
 	$(MAKE) --makefile=Makefiles/fish.mk all
 	
 inspect:

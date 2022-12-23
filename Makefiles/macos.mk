@@ -1,0 +1,9 @@
+HOMEBREW_PREFIX := /opt/homebrew
+export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
+PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
+BREW_PATH:=$(PACKAGE_ROOT)/brew
+FISH_DEPENDENCIES := brew
+BREW_INSTALL := brew install
+INSTALL_FISH := $(BREW_INSTALL) fish
+
+
