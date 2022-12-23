@@ -17,17 +17,6 @@ $(FISH_PATH):${FISH_DEPENDENCIES}
 # Dependencies for Windows
 #sudo:
 #	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
-
-
-# SETUP FISH
-ifeq ($(MODE), "minimum")
-fish: $(FISH_DEPENDENCIES)
-	@$(INSTALL_FISH)
-	echo $(MAKELEVEL)
-	echo  $(origin FISH_PATH)
-else
-fish: brew-packages
-endif
 ~/.config/fish:
 	@mkdir -p ~/.config/fish
 ~/.config/fish/config.fish: |~/.config/fish
