@@ -11,4 +11,4 @@ FISH_DEPENDENCIES :=
 
 dependencies:
 	$(PACMAN_INSTALL) base-devel
-	$(PACMAN_INSTALL) mingw-64-x86_64-toolchain
+#	$(PACMAN_INSTALL) mingw-64-x86_64-toolchain
