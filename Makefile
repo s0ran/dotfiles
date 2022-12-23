@@ -22,7 +22,7 @@ else
 endif
 
 # eval VPATH
-VPATH := $(shell pwd):${PATH}
+# VPATH := $(shell pwd):${PATH}
 # general
 all:
 	@/bin/bash -c "`echo 'echo World'`"
