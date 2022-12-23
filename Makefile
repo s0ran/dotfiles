@@ -17,16 +17,8 @@ FISH_PATH := $(shell which fish)
 # eval for each OS
 ifeq ($(UNAME),Darwin)
 	include Makefiles/macos.mk
-	
 else ifeq ($(UNAME),Linux)
-	HOMEBREW_PREFIX:= /home/linuxbrew/.linuxbrew
-	export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
-	PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
-	FISH_DEPENDENCIES := brew
-	BREW_INSTALL := brew install
-	INSTALL_FISH := $(BREW_INSTALL) fish
-	BREW_SRC := curl build-essential git ruby
-	
+	include Makefiles/linux.mk
 else
 	include Makefiles/windows.mk
 endif
@@ -48,6 +40,10 @@ build/windows: |dependencies
 	$(MAKE) --makefile=Makefiles/fish.mk all
 
 build/macos:
+	$(MAKE) --makefile=Makefiles/brew.mk all
+	$(MAKE) --makefile=Makefiles/fish.mk all
+
+build/linux: |dependencies
 	$(MAKE) --makefile=Makefiles/brew.mk all
 	$(MAKE) --makefile=Makefiles/fish.mk all
 	

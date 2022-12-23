@@ -9,8 +9,8 @@ jobs:
         run: sudo apt update && sudo apt install -y make
       - name: inspect
         run: make inspect
-      - name: fish-packages
-        run: make fish-packages
+      - name: build/linux
+        run: make build/linux
   on-ubuntu-2204:
     runs-on: ubuntu-22.04
     steps:
@@ -19,8 +19,8 @@ jobs:
         run: sudo apt update && sudo apt install -y make
       - name: inspect
         run: make inspect
-      - name: fish-packages
-        run: make fish-packages
+      - name: build/linux
+        run: make build/linux
   on-windows-2022:
     runs-on: windows-2022
     defaults:
