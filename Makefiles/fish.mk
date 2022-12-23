@@ -3,6 +3,13 @@ include Makefiles/brew.mk
 
 FISH_PATH = $(shell which fish)
 
+# fishがインストールされていれば、fishのシェルが登録されているかチェックする
+# なければ、fishをインストールする
+# そして、fishのシェルを登録する
+
+$(FISH_PATH):
+	$(INSTALL_FISH)
+
 # Dependencies for Windows
 sudo:
 	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
@@ -38,9 +45,5 @@ check-fish: ~/.config/fish/config.fish chsh-fish
 	@echo "Checking fish"
 	@fish -v
 	@echo $$SHELL
-fisher: curl chsh-fish
-	@curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher
-	@fisher -v
-fish-packages: fisher ~/.config/fish/fish_plugins
-	@fisher update
-	@fisher list
+	@which fish
+

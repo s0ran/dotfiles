@@ -31,12 +31,7 @@ else ifeq ($(UNAME),Linux)
 	BREW_SRC := curl build-essential git ruby
 	
 else
-	PROGRAM_DATA_DIR:=/c/ProgramData
-	CHOCOLATEY_ROOT := $(PROGRAM_DATA_DIR)/chocolatey
-	export PATH:= $(CHOCOLATEY_ROOT)/bin:$(shell echo "$$PATH")
-	FISH_DEPENDENCIES := 
-	PACMAN_INSTALL := pacman -S --noconfirm
-	INSTALL_FISH := $(PACMAN_INSTALL) fish
+	include Makefiles/windows.mk
 endif
 
 # eval VPATH
@@ -56,7 +51,8 @@ all:
 	@echo $(SHELL)
 
 build:
-	@echo "Building the project"
+	$(MAKE) check-fish
+	
 build/windows: sudo fish
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
@@ -68,6 +64,13 @@ inspect:
 	@echo "VPATH: $(VPATH)"
 	@echo "VARIABLES: $(.VARIABLES)"
 	@echo "MAKELEVEL: $(MAKELEVEL)"
+	@echo "MAKEFILE_LIST: $(MAKEFILE_LIST)"
+	@echo "MAKEFILES: $(MAKEFILES)"
+	@echo "MAKECMDGOALS: $(MAKECMDGOALS)"
+	@echo "MAKEOVERRIDES: $(MAKEOVERRIDES)"
+	@echo "MAKEFLAGS: $(MAKEFLAGS)"
+	@echo "MAKE_VERSION: $(MAKE_VERSION)"
+	@echo "MAKE_RESTARTS: $(MAKE_RESTARTS)"
 
 # Test
 test-ubuntu2004:
