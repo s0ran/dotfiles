@@ -32,6 +32,7 @@ jobs:
         with:
           msystem: mingw64
           update: true
+          install: git make
       - name: setup
         run: pacman -Su && make --version
       - name: inspect
@@ -49,6 +50,7 @@ jobs:
         with:
           msystem: mingw64
           update: true
+          install: git make
       - name: setup
         run: pacman -Su && make --version
       - name: inspect
