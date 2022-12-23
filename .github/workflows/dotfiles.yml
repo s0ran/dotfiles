@@ -34,7 +34,7 @@ jobs:
           update: true
           install: git make
       - name: setup
-        run: pacman -Su && make --version
+        run: pacman -Su
       - name: inspect
         run: make inspect
       - name: fish
@@ -52,7 +52,7 @@ jobs:
           update: true
           install: git make
       - name: setup
-        run: pacman -Su && make --version
+        run: pacman -Su
       - name: inspect
         run: make inspect
       - name: fish
