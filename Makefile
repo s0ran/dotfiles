@@ -10,6 +10,9 @@ HOME_DIR:=$(shell echo ~$(LOCAL_USER))
 SHELL := /bin/bash
 MODE := "minimum"
 
+# package path
+FISH_PATH := $(shell which fish)
+
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
@@ -36,12 +39,6 @@ endif
 
 # eval VPATH
 VPATH := $(shell pwd):${PATH}
-
-# package path
-FISH_PATH = $(shell which fish)
-
-include Makefiles/choco.mk Makefiles/fish.mk  
-
 # general
 all:
 	@/bin/bash -c "`echo 'echo World'`"
@@ -53,7 +50,9 @@ all:
 build:
 	$(MAKE) check-fish
 	
-build/windows: sudo fish
+build/windows: |dependencies
+	$(MAKE) --makefile=Makefiles/fish.mk all
+	
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"

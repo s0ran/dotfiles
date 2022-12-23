@@ -1,6 +1,12 @@
+.PHONY: all
+SHELL := $(shell which fish)
 
-
-fisher: curl chsh-fish
+all:
+	$(MAKE) fisher
+	$(MAKE) fish-packages
+~/.config/fish/fish_plugins:
+	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
+fisher:
 	@curl -sL https://git.io/fisher |source && sleep 3 && fisher install jorgebucaran/fisher
 	@fisher -v
 fish-packages: fisher ~/.config/fish/fish_plugins
