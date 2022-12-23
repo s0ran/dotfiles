@@ -65,8 +65,8 @@ jobs:
         run: make --version
       - name: inspect
         run: make inspect
-      - name: fish-packages
-        run: make fish-packages
+      - name: build/macos
+        run: make build/macos
   on-mac-12:
     runs-on: macos-12
     steps:
@@ -75,5 +75,5 @@ jobs:
         run: make --version
       - name: inspect
         run: make inspect
-      - name: fish-packages
-        run: make fish-packages
+      - name: build/macos
+        run: make build/macos

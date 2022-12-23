@@ -47,7 +47,7 @@ build:
 build/windows: |dependencies
 	$(MAKE) --makefile=Makefiles/fish.mk all
 
-build/mac:
+build/macos:
 	$(MAKE) --makefile=Makefiles/brew.mk all
 	$(MAKE) --makefile=Makefiles/fish.mk all
 	
