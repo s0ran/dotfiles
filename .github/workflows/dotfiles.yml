@@ -40,7 +40,7 @@ jobs:
       - name: choco
         run: make check-choco
       - name: fish
-        run: make build/windows
+        run: make build/windows && which fish
   on-windows-2019:
     runs-on: windows-2019
     defaults:
@@ -60,7 +60,7 @@ jobs:
       - name: choco
         run: make check-choco
       - name: fish
-        run: make build/windows
+        run: make build/windows && which fish
   on-mac-11:
     runs-on: macos-11
     steps:
