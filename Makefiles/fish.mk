@@ -5,7 +5,7 @@ FISH_PATH = $(shell which fish)
 # そして、fishのシェルを登録する
 all:
 	$(MAKE) $(FISH_PATH)
-	$(MAKE) --makefile=fish_package.mk all
+	$(MAKE) --makefile=Makefiles/fish_package.mk all
 	
 
 $(FISH_PATH):${FISH_DEPENDENCIES}
