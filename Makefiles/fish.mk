@@ -5,7 +5,6 @@ FISH_PATH = $(shell which fish)
 # そして、fishのシェルを登録する
 all:
 	$(MAKE) $(FISH_PATH)
-	$(MAKE) check-fish
 	$(MAKE) --makefile=fish_package.mk all
 	
 
@@ -20,18 +19,11 @@ $(FISH_PATH):${FISH_DEPENDENCIES}
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 	@echo "Installing fish functions"
-
-
-chsh-fish: |fish ~/.config/fish/config.fish 
+chsh-fish: |$(FISH_PATH) ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo `which fish`
 	@echo `which fish` | sudo tee -a /etc/shells
 endif
 	@sudo chsh -s `which fish`
 	$(eval SHELL := $(variable which fish))
-check-fish: ~/.config/fish/config.fish chsh-fish
-	@echo "Checking fish"
-	@fish -v
-	@echo $$SHELL
-	@which fish
 
