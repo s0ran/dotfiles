@@ -8,7 +8,7 @@ all:
 
 $(FISH_PATH):${FISH_DEPENDENCIES}
 	@echo "Installing fish"
-	@echo ${FISH_PATH}
+	echo ${FISH_PATH}
 	$(INSTALL_FISH)
 # Dependencies for Windows
 #sudo:
@@ -19,7 +19,8 @@ $(FISH_PATH):${FISH_DEPENDENCIES}
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ~/.config/fish/config.fish
 	@echo "Installing fish functions"
-chsh-fish: |$(FISH_PATH) ~/.config/fish/config.fish 
+
+chsh/fish: |$(FISH_PATH) ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo `which fish`
 	@echo `which fish` | sudo tee -a /etc/shells

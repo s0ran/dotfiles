@@ -5,5 +5,8 @@ BREW_PATH:=$(PACKAGE_ROOT)/brew
 FISH_DEPENDENCIES := $(BREW_PATH)
 BREW_INSTALL := brew install
 INSTALL_FISH := $(BREW_INSTALL) fish
+ifeq ($(FISH_PATH),)
+FISH_PATH := $(PACKAGE_ROOT)/fish
+endif
 
 
