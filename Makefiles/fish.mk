@@ -22,9 +22,8 @@ $(FISH_PATH):${FISH_DEPENDENCIES}
 
 chsh/fish: |$(FISH_PATH) ~/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo `which fish`
-	@echo `which fish` | sudo tee -a /etc/shells
+	echo `which fish`
+	echo `which fish` | sudo tee -a /etc/shells
 endif
-	@sudo chsh -s `which fish`
-	$(eval SHELL := $(variable which fish))
+	sudo chsh -s `which fish`
 
