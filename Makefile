@@ -48,7 +48,7 @@ build/linux: |dependencies
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
-	@echo "HOME: $(HOME_DIR)"
+	@echo "HOME: $(HOME)"
 	@echo "UNAME: $(UNAME)"
 	@echo "SHELL: $(SHELL)"
 	@echo "PATH: $(PATH)"
