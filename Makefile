@@ -10,7 +10,7 @@ HOME_DIR:=$(shell echo ~$(LOCAL_USER))
 SHELL:=/bin/bash
 MODE:="minimum"
 # package path
-FISH_PATH:=$(shell which fish||true)
+FISH_PATH:=$(shell which fish)
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
@@ -35,7 +35,6 @@ build:
 	$(MAKE) check-fish
 	
 build/windows:
-	echo $(FISH_PATH)
 	$(MAKE) -e --makefile=Makefiles/fish.mk all
 
 build/macos:
