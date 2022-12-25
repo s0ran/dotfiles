@@ -35,7 +35,7 @@ build:
 	$(MAKE) check-fish
 	
 build/windows:
-	$(MAKE) --makefile=Makefiles/fish.mk all
+	$(MAKE) -e --makefile=Makefiles/fish.mk all
 
 build/macos:
 	$(MAKE) --makefile=Makefiles/brew.mk all
