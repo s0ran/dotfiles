@@ -10,7 +10,7 @@ HOME_DIR:=$(shell echo ~$(LOCAL_USER))
 SHELL:=/bin/bash
 MODE:="minimum"
 # package path
-FISH_PATH:=$(shell which fish)
+FISH_PATH:=$(shell which fish||true)
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
