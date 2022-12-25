@@ -9,6 +9,5 @@ APT_INSTALL := sudo apt install -y
 ifeq ($(FISH_PATH),)
 FISH_PATH := $(PACKAGE_ROOT)/fish
 endif
-
 dependencies: 
 	@$(APT_INSTALL) $(BREW_SRC)

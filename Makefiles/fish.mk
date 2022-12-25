@@ -8,19 +8,19 @@ all:
 
 $(FISH_PATH):${FISH_DEPENDENCIES}
 	@echo "Installing fish"
-	echo ${FISH_PATH}
+	@echo ${FISH_PATH}
 	$(INSTALL_FISH)
 # Dependencies for Windows
 #sudo:
 #	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
-~/.config/fish:
-	@mkdir -p ~/.config/fish
-~/.config/fish/config.fish: |~/.config/fish
+${HOME}/.config/fish:
+	@mkdir -p ${HOME}/.config/fish
+${HOME}/.config/fish/config.fish: |${HOME}/.config/fish
 	@echo "Installing fish config"
-	@cp config/fish/config.fish ~/.config/fish/config.fish
+	@cp config/fish/config.fish ${HOME}/.config/fish/config.fish
 	@echo "Installing fish functions"
 
-chsh/fish: |$(FISH_PATH) ~/\.config/fish/config\.fish 
+chsh/fish: |$(FISH_PATH) ${HOME}/.config/fish/config.fish 
 ifeq ($(shell cat /etc/shells | grep fish),)
 	echo `which fish`
 	echo `which fish` | sudo tee -a /etc/shells

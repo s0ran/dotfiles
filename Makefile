@@ -6,7 +6,7 @@ UNAME := $(shell uname)
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
-HOME_DIR:=$(shell echo ~$(LOCAL_USER))
+HOME:=$(shell echo ~$(LOCAL_USER))
 SHELL:=/bin/bash
 MODE:="minimum"
 # package path
