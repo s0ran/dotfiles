@@ -1,5 +1,3 @@
-FISH_PATH = $(shell which fish)
-
 # fishがインストールされていれば、fishのシェルが登録されているかチェックする
 # なければ、fishをインストールする
 # そして、fishのシェルを登録する
