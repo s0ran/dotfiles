@@ -3,10 +3,13 @@
 # そして、fishのシェルを登録する
 all:
 	$(MAKE) $(FISH_PATH)
+	echo $(FISH_PATH)
 	$(MAKE) --makefile=Makefiles/fish_package.mk all
 	
 
 $(FISH_PATH):${FISH_DEPENDENCIES}
+	@echo "Installing fish"
+	@echo ${FISH_PATH}
 	$(INSTALL_FISH)
 # Dependencies for Windows
 #sudo:
