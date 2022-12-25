@@ -19,7 +19,6 @@ else ifeq ($(UNAME),Linux)
 	include Makefiles/linux.mk
 else
 	include Makefiles/windows.mk
-	echo $(FISH_PATH)
 endif
 
 # eval VPATH
@@ -36,6 +35,7 @@ build:
 	$(MAKE) check-fish
 	
 build/windows:
+	echo $(FISH_PATH)
 	$(MAKE) -e --makefile=Makefiles/fish.mk all
 
 build/macos:
