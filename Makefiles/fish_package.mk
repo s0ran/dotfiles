@@ -6,6 +6,7 @@ FISH_FUNCTIONS_DIR := ${HOME}/.config/fish/functions
 #MAKESHELL := ${FISH_PATH}
 
 all: fish-packages
+
 ~/.config/fish/fish_plugins:
 	@cp config/fish/fish_plugins ~/.config/fish/fish_plugins
 ${FISH_FUNCTIONS_DIR}/fisher.fish:
