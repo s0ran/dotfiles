@@ -13,7 +13,7 @@ $(FISH_PATH):
 ${FISH_CONFIG_DIR}:
 	@mkdir -p ${FISH_CONFIG_DIR}
 
-${FISH_CONFIG_DIR}/config.fish: |${FISH_CONFIG_DIR}
+${FISH_CONFIG_DIR}/config.fish: ${FISH_CONFIG_DIR}
 	@cp config/fish/config.fish ${FISH_CONFIG_DIR}/config.fish
 
 #chsh/fish: |$(FISH_PATH) ${FISH_CONFIG_DIR}/config.fish 
