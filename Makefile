@@ -1,4 +1,4 @@
-.PHONY: test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
+.PHONY: all build brew fish test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
 .SHELLFLAGS := -ec
 
 export
@@ -24,27 +24,22 @@ endif
 # eval VPATH
 # VPATH := $(shell pwd):${PATH}
 # general
-all:
-	@/bin/bash -c "`echo 'echo World'`"
-	@echo "`whoami`test"
-	@echo ${VPATH}
-	@echo $$PATH
-	@echo $(SHELL)
+EMPTY_TARGET:=target
+VPATH:=${EMPTY_TARGET}
 
-build:
-	$(MAKE) check-fish
-	
-build/windows:
+all:fish
+
+build:fish
+
+${BREW_PATH}:
+	echo "brew"
+	$(MAKE) -e --makefile=Makefiles/brew.mk all
+
+fish: ${FISH_DEPENDENCIES}
+	echo "fish"
 	$(MAKE) -e --makefile=Makefiles/fish.mk all
 
-build/macos:
-	$(MAKE) --makefile=Makefiles/brew.mk all
-	$(MAKE) --makefile=Makefiles/fish.mk all
 
-build/linux: |dependencies
-	$(MAKE) --makefile=Makefiles/brew.mk all
-	$(MAKE) --makefile=Makefiles/fish.mk all
-	
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
