@@ -1,7 +1,7 @@
 .PHONY: all
 
 export
-override SHELL := ${FISH_PATH}
+#override SHELL := ${FISH_PATH}
 MAKESHELL := ${FISH_PATH}
 
 all: fish-packages
