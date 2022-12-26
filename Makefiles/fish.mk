@@ -6,7 +6,6 @@ all: $(FISH_PATH)
 
 $(FISH_PATH):
 	$(INSTALL_FISH)
-	export SHELL=$(FISH_PATH)
 
 ${HOME}/.config/fish:
 	@mkdir -p ${HOME}/.config/fish
