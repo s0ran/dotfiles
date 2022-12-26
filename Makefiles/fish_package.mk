@@ -1,4 +1,5 @@
 .PHONY: all
+export
 SHELL := $(shell which fish)
 
 all: fish-packages
