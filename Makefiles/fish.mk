@@ -6,9 +6,6 @@ all: $(FISH_PATH)
 
 $(FISH_PATH):
 	$(INSTALL_FISH)
-# Dependencies for Windows
-#sudo:
-#	curl -s https://raw.githubusercontent.com/imachug/win-sudo/master/install.sh | sh
 
 ${HOME}/.config/fish:
 	@mkdir -p ${HOME}/.config/fish
