@@ -11,7 +11,7 @@ fisher:
 	@echo COMSPEC: $$COMSPEC
 	@echo SHELL: $$SHELL
 	@echo MAKESHELL: $$MAKESHELL
-	@curl -sL https://git.io/fisher | source && sleep 3 && fisher install jorgebucaran/fisher
+	@curl -sL https://git.io/fisher | source && sleep 3 && fisher install jorgebucaran/fisher && which fisher
 	@fisher -v
 fish-packages: fisher ~/.config/fish/fish_plugins
 	@fisher update

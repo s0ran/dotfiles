@@ -1,7 +1,7 @@
 # fishがインストールされていれば、fishのシェルが登録されているかチェックする
 # なければ、fishをインストールする
 # そして、fishのシェルを登録する
-all: $(FISH_PATH)
+all: $(FISH_PATH) ${HOME}/.config/fish/config.fish
 	$(MAKE) -e --makefile=Makefiles/fish_package.mk all
 
 $(FISH_PATH):
@@ -10,10 +10,8 @@ $(FISH_PATH):
 ${HOME}/.config/fish:
 	@mkdir -p ${HOME}/.config/fish
 
-#${HOME}/.config/fish/config.fish: |${HOME}/.config/fish
-#	@echo "Installing fish config"
-#	@cp config/fish/config.fish ${HOME}/.config/fish/config.fish
-#	@echo "Installing fish functions"
+${HOME}/.config/fish/config.fish: |${HOME}/.config/fish
+	@cp config/fish/config.fish ${HOME}/.config/fish/config.fish
 
 #chsh/fish: |$(FISH_PATH) ${HOME}/.config/fish/config.fish 
 #ifeq ($(shell cat /etc/shells | grep fish),)
