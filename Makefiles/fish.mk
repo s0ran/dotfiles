@@ -4,7 +4,7 @@
 all: $(FISH_PATH)
 	$(MAKE) --makefile=Makefiles/fish_package.mk all
 
-$(FISH_PATH):${FISH_DEPENDENCIES}
+$(FISH_PATH):
 	$(INSTALL_FISH)
 # Dependencies for Windows
 #sudo:
@@ -13,7 +13,7 @@ $(FISH_PATH):${FISH_DEPENDENCIES}
 ${HOME}/.config/fish:
 	@mkdir -p ${HOME}/.config/fish
 
-${HOME}/.config/fish/config.fish: |${HOME}/.config/fish
+${HOME}/\.config/fish/config.fish: |${HOME}/.config/fish
 	@echo "Installing fish config"
 	@cp config/fish/config.fish ${HOME}/.config/fish/config.fish
 	@echo "Installing fish functions"
