@@ -1,6 +1,7 @@
 # fishがインストールされていれば、fishのシェルが登録されているかチェックする
 # なければ、fishをインストールする
 # そして、fishのシェルを登録する
+export
 FISH_CONFIG_DIR:=${HOME}/.config/fish
 
 
