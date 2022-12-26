@@ -6,6 +6,7 @@ set -gx DESKTOP $HOME/Desktop
 #Variable: Fish
 set -gx FISH_FUNCTIONS $HOME/.config/fish/functions
 set -gx FISH_CONFIG $HOME/.config/fish/config.fish
+set -gx PATH $FISH_FUNCTIONS $PATH
 
 # Variable: HomeBrew
 set -gx HOMEBREW_PREFIX /opt/homebrew
@@ -43,7 +44,7 @@ set -gx LDFLAGS -L$HOMEBREW_PREFIX/opt/readline/lib
 set -gx CPPFLAGS -I$HOMEBREW_PREFIX/opt/readline/include
 
 # Variable: Language: Go
-set -gx GOENV_GOPATH_PREFIX /Users/s0ran/.go
+set -gx GOENV_GOPATH_PREFIX $HOME/.go
 set -gx GOBIN $GOENV_GOPATH_PREFIX/tools/bin
 set -gx GOENV $GOPATH/env
 set -gx PATH $PATH $GOPATH/bin $GOBIN
