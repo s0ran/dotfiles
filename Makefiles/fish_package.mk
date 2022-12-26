@@ -1,7 +1,7 @@
 .PHONY: all
 
 export
-SHELL := $(shell which fish)
+override SHELL := $(shell which fish)
 MAKESHELL := $(shell which fish)
 
 all: fish-packages
