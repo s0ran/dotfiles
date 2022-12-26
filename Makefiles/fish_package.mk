@@ -1,6 +1,6 @@
 .PHONY: all
-export
 SHELL := $(shell which fish)
+MAKESHELL := $(shell which make)
 
 all: fish-packages
 ~/.config/fish/fish_plugins:
