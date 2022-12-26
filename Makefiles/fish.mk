@@ -2,7 +2,7 @@
 # なければ、fishをインストールする
 # そして、fishのシェルを登録する
 all: $(FISH_PATH)
-	$(MAKE) --makefile=Makefiles/fish_package.mk all
+	$(MAKE) -e --makefile=Makefiles/fish_package.mk all
 
 $(FISH_PATH):
 	$(INSTALL_FISH)

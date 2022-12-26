@@ -1,8 +1,8 @@
 .PHONY: all
 
 export
-override SHELL := $(shell which fish)
-MAKESHELL := $(shell which fish)
+override SHELL := ${FISH_PATH}
+MAKESHELL := ${FISH_PATH}
 
 all: fish-packages
 ~/.config/fish/fish_plugins:
