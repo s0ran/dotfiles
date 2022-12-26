@@ -15,10 +15,10 @@ ${HOME}/.config/fish:
 #	@cp config/fish/config.fish ${HOME}/.config/fish/config.fish
 #	@echo "Installing fish functions"
 
-chsh/fish: |$(FISH_PATH) ${HOME}/.config/fish/config.fish 
-ifeq ($(shell cat /etc/shells | grep fish),)
-	echo `which fish`
-	echo `which fish` | sudo tee -a /etc/shells
-endif
-	sudo chsh -s `which fish`
+#chsh/fish: |$(FISH_PATH) ${HOME}/.config/fish/config.fish 
+#ifeq ($(shell cat /etc/shells | grep fish),)
+#	echo `which fish`
+#	echo `which fish` | sudo tee -a /etc/shells
+#endif
+#	sudo chsh -s `which fish`
 
