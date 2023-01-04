@@ -4,6 +4,7 @@ set -q PATH; or set PATH ''
 set -gx DESKTOP $HOME/Desktop
 
 #Variable: Fish
+set -gx SHELL (which fish)
 set -gx FISH_FUNCTIONS $HOME/.config/fish/functions
 set -gx FISH_CONFIG $HOME/.config/fish/config.fish
 
