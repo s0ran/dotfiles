@@ -29,16 +29,16 @@ VPATH:=${EMPTY_TARGET}
 
 all:fish
 
-build:fish
+build:abbr
 
 ${BREW_PATH}:
-	echo "brew"
-	$(MAKE) -e --makefile=Makefiles/brew.mk all
+	@$(MAKE) -e --makefile=Makefiles/brew.mk all
 
 fish: ${FISH_DEPENDENCIES}
-	echo "fish"
-	$(MAKE) -e --makefile=Makefiles/fish.mk all
+	@$(MAKE) -e --makefile=Makefiles/fish.mk all
 
+abbr:fish
+	@$(MAKE) -e --makefile=Makefiles/abbr.mk all
 
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"

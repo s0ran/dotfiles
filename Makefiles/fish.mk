@@ -6,12 +6,11 @@ FISH_CONFIG_DIR:=${HOME}/.config/fish
 
 
 all: $(FISH_PATH) ${EMPTY_TARGET}/fish ${FISH_CONFIG_DIR}/config.fish
-	$(MAKE) -e --makefile=Makefiles/fish_packages.mk all
+	@$(MAKE) -e --makefile=Makefiles/fish_packages.mk all
 
 $(FISH_PATH) ${EMPTY_TARGET}/fish &:
-	echo "hello"
-	$(INSTALL_FISH)
-	mkdir -p ${EMPTY_TARGET}/fish
+	@$(INSTALL_FISH)
+	@mkdir -p ${EMPTY_TARGET}/fish
 
 ${FISH_CONFIG_DIR}:
 	@mkdir -p ${FISH_CONFIG_DIR}
