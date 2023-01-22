@@ -1,12 +1,9 @@
 # fish
 config/fish/functions/*
-config/fish/fish_plugins/*
 config/fish/conf.d/*
 config/fish/completions/*
 config/fish/fish_variables
 
 !config/fish/functions/edit.fish
-!config/fish/functions/peco_select_history.fish
 !config/fish/functions/config.fish
 !config/fish/functions/fish_user_key_bindings.fish
-
