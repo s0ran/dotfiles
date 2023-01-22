@@ -77,3 +77,7 @@ set -gx WEZTERM_CONFIG $HOME/.config/wezterm
 # Setup: nvim
 set -gx NVIM_CONFIG $HOME/.config/nvim
 
+# Setup: dotfiles
+set -gx DOTFILES $HOME/.dotfiles
+
+
