@@ -2,6 +2,8 @@ set -q PATH; or set PATH ''
 
 # Varialbe: General
 set -gx DESKTOP $HOME/Desktop
+set -gx DOWNLOADS $HOME/Downloads
+set -gx EDITOR nvim
 
 # Variable: HomeBrew
 set -gx HOMEBREW_PREFIX /opt/homebrew

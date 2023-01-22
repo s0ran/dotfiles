@@ -2,5 +2,5 @@
 
 all: ${HOME}/.config/wezterm
 
-${HOME}/.config/wezterm: ${HOME}/.config
+${HOME}/.config/wezterm:
 	ln -s ${PWD}/config/wezterm $@

@@ -1,4 +1,4 @@
-.PHONY: all build brew fish test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
+.PHONY: all abbr build brew fish test-ubuntu2004 down-ubuntu2004 check-ubuntu2004 test-ubuntu2204 down-ubuntu2204 check-ubuntu2204
 .SHELLFLAGS := -ec
 
 export
@@ -35,14 +35,20 @@ build:abbr
 ${BREW_PATH}:
 	@$(MAKE) -e --makefile=Makefiles/brew.mk all
 
-fish: ${FISH_DEPENDENCIES}
+${HOME}/.config:
+	mkdir -p $@
+
+fish: ${FISH_DEPENDENCIES} ${HOME}/.config
 	@$(MAKE) -e --makefile=Makefiles/fish.mk all
 
 abbr:fish
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk all
 
-wezterm: ${BREW_PATH}
+wezterm: ${BREW_PATH} ${HOME}/.config
 	@$(MAKE) -e --makefile=Makefiles/wezterm.mk all
+
+nvim: ${BREW_PATH} ${HOME}/.config
+	@$(MAKE) -e --makefile=Makefiles/nvim.mk all
 
 sync:
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk sync
