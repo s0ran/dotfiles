@@ -28,7 +28,7 @@ endif
 EMPTY_TARGET:=target
 VPATH:=${EMPTY_TARGET}
 
-all:fish
+all:abbr
 
 build:abbr
 
