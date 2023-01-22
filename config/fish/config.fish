@@ -65,3 +65,15 @@ end
 
 # Setup: iTerm2
 functions iterm2_shell_integration
+
+# Setup: gh
+if status is-interactive
+    eval (gh completion -s fish| source)
+end
+
+# Setup: wezterm
+set -gx WEZTERM_CONFIG $HOME/.config/wezterm
+
+# Setup: nvim
+set -gx NVIM_CONFIG $HOME/.config/nvim
+

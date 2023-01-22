@@ -11,6 +11,7 @@ SHELL:=/bin/bash
 MODE:="minimum"
 # package path
 FISH_PATH:=$(shell which fish)
+PWD:=$(shell pwd)
 
 # eval for each OS
 ifeq ($(UNAME),Darwin)
@@ -46,6 +47,7 @@ inspect:
 	@echo "HOME: $(HOME)"
 	@echo "UNAME: $(UNAME)"
 	@echo "SHELL: $(SHELL)"
+	@echo "PWD: $(PWD)"
 	@echo "PATH: $(PATH)"
 	@echo "VPATH: $(VPATH)"
 	@echo "VARIABLES: $(.VARIABLES)"
