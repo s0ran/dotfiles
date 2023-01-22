@@ -41,7 +41,7 @@ fish: ${FISH_DEPENDENCIES}
 abbr:fish
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk all
 
-wezterm:
+wezterm: ${BREW_PATH}
 	@$(MAKE) -e --makefile=Makefiles/wezterm.mk all
 
 sync:
