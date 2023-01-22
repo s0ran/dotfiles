@@ -41,6 +41,9 @@ fish: ${FISH_DEPENDENCIES}
 abbr:fish
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk all
 
+sync:
+	@$(MAKE) -e --makefile=Makefiles/abbr.mk sync
+
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
 	@echo "USER: $(LOCAL_USER)"
