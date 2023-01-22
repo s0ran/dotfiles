@@ -43,6 +43,7 @@ abbr:fish
 
 sync:
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk sync
+	@$(MAKE) -e --makefile=Makefiles/brew.mk sync
 
 inspect:
 	@echo "ID: $(LOCAL_UID):$(LOCAL_GID)"
