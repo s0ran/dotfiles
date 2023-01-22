@@ -3,16 +3,16 @@ set -q PATH; or set PATH ''
 # Varialbe: General
 set -gx DESKTOP $HOME/Desktop
 
-#Variable: Fish
-set -gx SHELL (which fish)
-set -gx FISH_FUNCTIONS $HOME/.config/fish/functions
-set -gx FISH_CONFIG $HOME/.config/fish/config.fish
-
 # Variable: HomeBrew
 set -gx HOMEBREW_PREFIX /opt/homebrew
 set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
 set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
 set -gx PATH $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin $PATH
+
+#Variable: Fish
+set -gx SHELL (which fish)
+set -gx FISH_FUNCTIONS $HOME/.config/fish/functions
+set -gx FISH_CONFIG $HOME/.config/fish/config.fish
 
 # Variable: NodeBrew
 set -gx NODEBREW_ROOT $HOMEBREW_PREFIX/var/nodebrew
