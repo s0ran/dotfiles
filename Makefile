@@ -28,7 +28,7 @@ endif
 EMPTY_TARGET:=target
 VPATH:=${EMPTY_TARGET}
 
-all:abbr
+all:abbr wezterm nvim
 
 build:abbr
 
