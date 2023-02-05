@@ -79,11 +79,11 @@ if test $OS = 'Mac'
 
     # Setup: iTerm2
     functions iterm2_shell_integration
-end
 
-# Setup: gh
-if status is-interactive
-    eval (gh completion -s fish| source)
+    # Setup: gh
+    if status is-interactive
+        eval (gh completion -s fish| source)
+    end
 end
 
 # Setup: wezterm
