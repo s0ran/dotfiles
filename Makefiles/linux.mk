@@ -5,6 +5,8 @@ BREW_PATH:=$(PACKAGE_ROOT)/brew
 FISH_DEPENDENCIES := BREW_PATH
 BREW_INSTALL := brew install
 INSTALL_FISH := $(BREW_INSTALL) fish
+CHANGE_SHELL := sudo chsh -s `which fish`
+
 BREW_SRC := curl build-essential git ruby
 APT_INSTALL := sudo apt install -y
 ifeq ($(FISH_PATH),)

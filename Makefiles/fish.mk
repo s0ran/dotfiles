@@ -23,6 +23,6 @@ ifeq ($(shell cat /etc/shells | grep fish),)
 	@echo `which fish` | sudo tee -a /etc/shells
 endif
 	echo ${FISH_CONFIG_DIR}
-	@sudo chsh -s `which fish`
+	@$(CHANGE_SHELL)
 	@touch ${EMPTY_TARGET}/fish/chsh
 

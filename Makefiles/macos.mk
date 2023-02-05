@@ -14,6 +14,7 @@ endif
 FISH_DEPENDENCIES := $(BREW_PATH)
 BREW_INSTALL := brew install
 INSTALL_FISH := $(BREW_INSTALL) fish
+CHANGE_SHELL := sudo chsh -s `which fish`
 
 # fish is not installed
 ifeq ($(FISH_PATH),)
