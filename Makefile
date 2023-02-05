@@ -50,9 +50,6 @@ wezterm: ${BREW_PATH} ${HOME}/.config
 nvim: ${BREW_PATH} ${HOME}/.config
 	@$(MAKE) -e --makefile=Makefiles/nvim.mk all
 
-anyenv:
-	@$(MAKE) -e --makefile=Makefiles/anyenv.mk all
-
 sync:
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk sync
 	@$(MAKE) -e --makefile=Makefiles/brew.mk sync
