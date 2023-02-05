@@ -1,11 +1,24 @@
 # Prerequiremnts
 
 ## Windows
-WIP
+###powershell
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+cinst git msys2
+```
+
+環境変数`MSYS2_PATH_TYPE`に`inherit`を登録する。
+
+### msys2
+```
+pacman -S --noconfirm make
+git clone https://github.com/s0ran/dotfiles.git ~/.dotfiles
+```
 
 ## Mac & Linux
 ```
-git clone https://github.com/s0ran/dotfiles.git ~
+git clone https://github.com/s0ran/dotfiles.git ~/.dotfiles
 ```
 
 # Install
