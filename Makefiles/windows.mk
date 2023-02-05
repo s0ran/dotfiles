@@ -11,4 +11,4 @@ CHANGE_SHELL := mkpasswd -c|sed -e 's/bash/fish/g' > /etc/passwd
 ifeq ($(FISH_PATH),)
 FISH_PATH:=/usr/bin/fish.exe
 endif
-FISH_DEPENDENCIES := 
+FISH_DEPENDENCIES := anyenv

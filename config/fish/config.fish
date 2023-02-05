@@ -60,6 +60,7 @@ set -gx METADATA $DESKTOP/Metadata
 set -gx LABORATORY $DESKTOP/Laboratory
 
 # Setup: Anyenv
+set -gx PATH $HOME/.anyenv/bin $PATH
 if status is-interactive
     source (anyenv init -|psub)
     # Commands to run in interactive sessions can go here
