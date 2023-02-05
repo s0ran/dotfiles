@@ -5,11 +5,22 @@ set -gx DESKTOP $HOME/Desktop
 set -gx DOWNLOADS $HOME/Downloads
 set -gx EDITOR nvim
 
+switch (uname -s)
+    case Darwin
+        set -gx OS Mac
+    case Linux
+        set -gx OS Linux
+    case 'MSYS*'
+        set -gx OS Windows
+end
+
 # Variable: HomeBrew
-set -gx HOMEBREW_PREFIX /opt/homebrew
-set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
-set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
-set -gx PATH $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin $PATH
+if test $OS != 'Windows'
+    set -gx HOMEBREW_PREFIX /opt/homebrew
+    set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
+    set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
+    set -gx PATH $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin $PATH
+end
 
 #Variable: Fish
 set -gx SHELL (which fish)
@@ -59,14 +70,16 @@ set -gx ATCODER_ROOT $DESKTOP/CompetitiveProgramming/AtCoder
 set -gx METADATA $DESKTOP/Metadata
 set -gx LABORATORY $DESKTOP/Laboratory
 
-# Setup: Anyenv
-if status is-interactive
-    source (anyenv init -|psub)
-    # Commands to run in interactive sessions can go here
-end
+if test $OS = 'Mac'
+    # Setup: Anyenv
+    if status is-interactive
+        source (anyenv init -|psub)
+        # Commands to run in interactive sessions can go here
+    end
 
-# Setup: iTerm2
-functions iterm2_shell_integration
+    # Setup: iTerm2
+    functions iterm2_shell_integration
+end
 
 # Setup: gh
 if status is-interactive
