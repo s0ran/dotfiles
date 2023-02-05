@@ -8,7 +8,7 @@ FISH_FUNCTIONS_DIR := ${HOME}/.config/fish/functions
 all: fish/packages
 
 ~/.config/fish/fish_plugins: config/fish/fish_plugins
-	@ln -s config/fish/fish_plugins ~/.config/fish/fish_plugins
+	@ln -sf ${PWD}/config/fish/fish_plugins ~/.config/fish/fish_plugins
 
 ${FISH_FUNCTIONS_DIR}/fisher.fish:
 	@curl -sL https://git.io/fisher | source && sleep 3 && fisher install jorgebucaran/fisher
