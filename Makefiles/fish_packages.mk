@@ -13,7 +13,7 @@ all: fish/packages
 ${FISH_FUNCTIONS_DIR}/fisher.fish:
 	@curl -sL https://git.io/fisher | source && sleep 3 && fisher install jorgebucaran/fisher
 
-fish/packages: |${FISH_FUNCTIONS_DIR}/fisher.fish ~/.config/fish/fish_plugins
+fish/packages: ${FISH_FUNCTIONS_DIR}/fisher.fish ~/.config/fish/fish_plugins
 	@fish -c fisher update
 	@fish -c fisher list
 	touch ${EMPTY_TARGET}/fish/packages
