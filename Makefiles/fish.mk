@@ -15,7 +15,7 @@ $(FISH_PATH) ${EMPTY_TARGET}/fish &:
 	@mkdir -p ${EMPTY_TARGET}/fish
 
 ${FISH_CONFIG_DIR}: config/fish
-	@ln -s ${PWD}/config/fish $@
+	@ln -sf ${PWD}/config/fish $@
 
 ${EMPTY_TARGET}/fish/chsh: $(FISH_PATH) ${EMPTY_TARGET}/fish ${FISH_CONFIG_DIR}
 ifeq ($(shell cat /etc/shells | grep fish),)
