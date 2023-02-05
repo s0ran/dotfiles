@@ -4,5 +4,5 @@ SHELL:=$(shell which fish)
 
 all: ~/.anyenv
 
-~/.anyenv
+~/.anyenv:
 	@git clone https://github.com/anyenv/anyenv ~/.anyenv
