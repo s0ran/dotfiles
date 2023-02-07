@@ -20,6 +20,8 @@ if test $OS != 'Windows'
     set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
     set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
     set -gx PATH $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin $PATH
+else
+    set -gxp PATH /msys64/bin
 end
 
 #Variable: Fish
