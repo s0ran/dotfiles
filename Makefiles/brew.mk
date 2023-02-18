@@ -1,4 +1,4 @@
-.PHONY: Brewfile sync
+.PHONY: sync
 
 # Brew Installation for Mac, Linux
 all: brew-packages
