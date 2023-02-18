@@ -9,7 +9,7 @@ all: fish/packages
 
 ${FISH_CONFIG_DIR}: ${FISH_FUNCTIONS_DIR}/fisher.fish
 	rm -rf ${FISH_CONFIG_DIR}
-	@ln -sf ${PWD}/config/fish $@
+	ln -sf ${PWD}/config/fish ${FISH_CONFIG_DIR}
 
 
 ${FISH_FUNCTIONS_DIR}/fisher.fish:
