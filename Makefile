@@ -12,8 +12,9 @@ SHELL:=/bin/bash
 PWD:=$(shell pwd)
 PROJECT_ROOT := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 
-# package path
+# path
 FISH_PATH:=$(shell which fish)
+GH_PATH:=$(shell which gh)
 
 # multi profile
 USAGE:="personal" # personal
@@ -32,7 +33,7 @@ endif
 EMPTY_TARGET:=target
 VPATH:=${EMPTY_TARGET}
 
-all:abbr wezterm nvim
+all:abbr wezterm nvim gh/pubkey
 
 build:abbr
 
@@ -53,6 +54,9 @@ wezterm: ${BREW_PATH} ${HOME}/.config
 
 nvim: ${BREW_PATH} ${HOME}/.config
 	@$(MAKE) -e --makefile=Makefiles/nvim.mk all
+
+gh/pubkey:
+	@$(MAKE) -e --makefile=Makefiles/gh_pubkey.mk all
 
 sync:
 	@$(MAKE) -e --makefile=Makefiles/abbr.mk sync

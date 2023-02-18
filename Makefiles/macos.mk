@@ -25,4 +25,8 @@ ifeq ($(FISH_PATH),)
 FISH_PATH := $(PACKAGE_ROOT)/fish
 endif
 
-
+# if gh is not installed
+ifeq ($(GH_PATH),)
+GH_PATH := $(PACKAGE_ROOT)/gh
+INSTALL_GH := $(BREW_INSTALL) gh
+endif

@@ -11,4 +11,11 @@ CHANGE_SHELL := mkpasswd -c|sed -e 's/bash/fish/g' > /etc/passwd
 ifeq ($(FISH_PATH),)
 FISH_PATH:=/usr/bin/fish.exe
 endif
+
+# if gh is not installed
+ifeq ($(GH_PATH),)
+GH_PATH := /usr/bin/gh
+INSTALL_GH := $(PACMAN_INSTALL) gh
+endif
+
 FISH_DEPENDENCIES := 
