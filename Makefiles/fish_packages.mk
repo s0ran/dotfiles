@@ -8,7 +8,8 @@ FISH_FUNCTIONS_DIR := ${HOME}/.config/fish/functions
 all: fish/packages
 
 ${FISH_CONFIG_DIR}: ${FISH_FUNCTIONS_DIR}/fisher.fish
-	@ln -sf ${PWD}/config/fish/ $@
+	rm -rf ${FISH_CONFIG_DIR}
+	@ln -sf ${PWD}/config/fish $@
 
 
 ${FISH_FUNCTIONS_DIR}/fisher.fish:
