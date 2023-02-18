@@ -19,7 +19,7 @@ ${FISH_CONFIG_DIR}: config/fish
 
 ${EMPTY_TARGET}/fish/chsh: $(FISH_PATH) ${EMPTY_TARGET}/fish ${FISH_CONFIG_DIR}
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo `which fish` | sudo tee -a /etc/shells
+	@echo `which fish` | tee -a /etc/shells
 endif
 	echo ${FISH_CONFIG_DIR}
 	@$(CHANGE_SHELL)
