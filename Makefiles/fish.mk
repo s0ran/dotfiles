@@ -19,9 +19,12 @@ ${FISH_CONFIG_DIR}: config/fish
 
 ${EMPTY_TARGET}/fish/chsh: $(FISH_PATH) ${EMPTY_TARGET}/fish ${FISH_CONFIG_DIR}
 ifeq ($(shell cat /etc/shells | grep fish),)
-	@echo `which fish` | tee -a /etc/shells
+	ifeq ($(UNAME),$(filter $(UNAME),Darwin Linux))
+		@echo `which fish` | sudo tee -a /etc/shells
+	else
+		@echo `which fish` | tee -a /etc/shells
+	endif
 endif
-	echo ${FISH_CONFIG_DIR}
 	@$(CHANGE_SHELL)
 	@touch ${EMPTY_TARGET}/fish/chsh
 

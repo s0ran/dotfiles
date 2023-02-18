@@ -15,5 +15,4 @@ ${FISH_FUNCTIONS_DIR}/fisher.fish:
 
 fish/packages: ${FISH_FUNCTIONS_DIR}/fisher.fish ~/.config/fish/fish_plugins
 	@fish -c fisher update
-	@fish -c fisher list
-	touch ${EMPTY_TARGET}/fish/packages
+	@touch ${EMPTY_TARGET}/fish/packages
