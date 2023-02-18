@@ -4,6 +4,7 @@ abbr -a -U -- bs 'brew search'
 abbr -a -U -- bui 'brew uninstall'
 abbr -a -U -- cdr 'cd (ghq list --full-path |peco)'
 abbr -a -U -- clip pbcopy
+abbr -a -U -- cnf config
 abbr -a -U -- d docker
 abbr -a -U -- dco docker-compose
 abbr -a -U -- dcu 'docker-compose up'
