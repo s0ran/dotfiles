@@ -20,5 +20,9 @@ ${FISH_FUNCTIONS_DIR}/fisher.fish:
 	@curl -sL https://git.io/fisher | source && sleep 3 && fisher install jorgebucaran/fisher
 
 fish/packages: ~/.config/fish/fish_plugins
-	@fish -c fisher update
+	ifeq ($(UNAME),$(filter $(UNAME),Darwin Linux))
+		@fisher update
+	else
+		@fish -c fisher update
+	endif
 	@touch ${EMPTY_TARGET}/fish/packages
