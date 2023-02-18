@@ -5,7 +5,7 @@ ifeq ($(BREW_PATH),)
 ifeq ($(MACHINE_TYPE),arm64)
 HOMEBREW_PREFIX:=/opt/homebrew
 else
-HOMEBREW_PREFIX:=/usr/local/homebrew
+HOMEBREW_PREFIX:=/usr/local
 endif
 export PATH:= $(HOMEBREW_PREFIX)/bin:$(HOMEBREW_PREFIX)/sbin:$(shell echo "$$PATH")
 PACKAGE_ROOT:=$(HOMEBREW_PREFIX)/bin
