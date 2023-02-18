@@ -14,10 +14,7 @@ $(FISH_PATH) ${EMPTY_TARGET}/fish &:
 	@$(INSTALL_FISH)
 	@mkdir -p ${EMPTY_TARGET}/fish
 
-${FISH_CONFIG_DIR}: config/fish
-	@ln -sf ${PWD}/config/fish $@
-
-${EMPTY_TARGET}/fish/chsh: $(FISH_PATH) ${EMPTY_TARGET}/fish ${FISH_CONFIG_DIR}
+${EMPTY_TARGET}/fish/chsh: $(FISH_PATH) ${EMPTY_TARGET}/fish
 ifeq ($(shell cat /etc/shells | grep fish),)
 ifeq ($(UNAME),$(filter $(UNAME),Darwin Linux))
 	@echo `which fish` | sudo tee -a /etc/shells
