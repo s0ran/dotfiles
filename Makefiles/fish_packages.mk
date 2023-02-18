@@ -16,9 +16,5 @@ ${FISH_CONFIG_DIR}: ${FISH_FUNCTIONS_DIR}/fisher.fish
 
 fish/packages: ${FISH_CONFIG_DIR}
 	cat ~/.config/fish/fish_plugins
-ifeq ($(UNAME),$(filter $(UNAME),Darwin Linux))
-	@fisher update
-else
-	@fish -c fisher update
-endif
+	@fish -c "fisher update"
 	@touch ${EMPTY_TARGET}/fish/packages
