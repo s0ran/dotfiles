@@ -13,6 +13,10 @@ MODE:="minimum"
 FISH_PATH:=$(shell which fish)
 PWD:=$(shell pwd)
 
+USAGE:="personal" # personal
+# USAGE:="work" # work
+# USAGE:="minimum" # minimum
+
 # eval for each OS
 ifeq ($(UNAME),Darwin)
 	include Makefiles/macos.mk
@@ -72,6 +76,9 @@ inspect:
 	@echo "MAKEFLAGS: $(MAKEFLAGS)"
 	@echo "MAKE_VERSION: $(MAKE_VERSION)"
 	@echo "MAKE_RESTARTS: $(MAKE_RESTARTS)"
+
+clean:
+	@rm -rf ${EMPTY_TARGET}
 
 # Test
 test-ubuntu2004:
