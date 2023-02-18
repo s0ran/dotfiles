@@ -7,7 +7,7 @@ FISH_FUNCTIONS_DIR := ${HOME}/.config/fish/functions
 
 all: fish/packages
 
-${FISH_CONFIG_DIR}:
+${FISH_CONFIG_DIR}: ${FISH_FUNCTIONS_DIR}/fisher.fish
 	@ln -sf ${PWD}/config/fish $@
 
 #~/.config/fish/fish_plugins: ${FISH_FUNCTIONS_DIR}/fisher.fish
