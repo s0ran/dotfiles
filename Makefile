@@ -3,16 +3,19 @@
 
 export
 UNAME := $(shell uname)
+MACHINE_TYPE := $(shell uname -m)
 LOCAL_USER:=$(shell whoami)
 LOCAL_UID:=$(shell id -u $(LOCAL_USER))
 LOCAL_GID:=$(shell id -g $(LOCAL_USER))
 HOME:=$(shell echo ~$(LOCAL_USER))
 SHELL:=/bin/bash
-MODE:="minimum"
+PWD:=$(shell pwd)
+PROJECT_ROOT := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+
 # package path
 FISH_PATH:=$(shell which fish)
-PWD:=$(shell pwd)
 
+# multi profile
 USAGE:="personal" # personal
 # USAGE:="work" # work
 # USAGE:="minimum" # minimum
@@ -26,9 +29,6 @@ else
 	include Makefiles/windows.mk
 endif
 
-# eval VPATH
-# VPATH := $(shell pwd):${PATH}
-# general
 EMPTY_TARGET:=target
 VPATH:=${EMPTY_TARGET}
 
@@ -63,6 +63,8 @@ inspect:
 	@echo "USER: $(LOCAL_USER)"
 	@echo "HOME: $(HOME)"
 	@echo "UNAME: $(UNAME)"
+	@echo "MACHINE_TYPE: $(MACHINE_TYPE)"
+	@echo "PROJECT_ROOT: $(PROJECT_ROOT)"
 	@echo "SHELL: $(SHELL)"
 	@echo "PWD: $(PWD)"
 	@echo "PATH: $(PATH)"
