@@ -7,8 +7,8 @@ all: abbr
 config/fish/abbrfile.fish:
 	@abbr -s > $@	
 
-abbr: config/fish/abbrfile.fish
-	@fish config/fish/abbrfile.fish
+abbr:
+	@. config/fish/abbrfile.fish
 
 sync: 
 	@abbr -s > config/fish/abbrfile.fish
