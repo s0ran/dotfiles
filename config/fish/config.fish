@@ -98,4 +98,3 @@ set -gx NVIM_CONFIG $HOME/.config/nvim
 set -gx DOTFILES $HOME/.dotfiles
 
 . ~/.config/fish/abbrfile.fish
-
