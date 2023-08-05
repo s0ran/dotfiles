@@ -42,6 +42,6 @@ abbr -a -- punst 'pipenv uninstall'
 abbr -a -- py python
 abbr -a -- r 'rm -rf'
 abbr -a -- ga 'git add'
-abbr -a -- ga. 'git add .'
+abbr -a --set-cursor='%' -- gcm 'git commit -m "%"'
 abbr -a -- gcar 'git commit --amend --reuse-commit HEAD'
-abbr -a -- gcm 'git commit -m "%"'
+abbr -a -- glo 'git log --oneline'
