@@ -54,6 +54,9 @@ set -gx GHQ_SELECTOR peco
 set -gx FLUTTER_ROOT /opt/flutter
 set -gx PATH $FLUTTER_ROOT/bin $PATH
 
+# Variable: Tool: Matplotlib
+set -gx MPLCONFIGDIR $HOME/.config/matplotlib
+
 # Variabl: Language: C Cpp
 set -gx LDFLAGS -L$HOMEBREW_PREFIX/opt/readline/lib
 set -gx CPPFLAGS -I$HOMEBREW_PREFIX/opt/readline/include

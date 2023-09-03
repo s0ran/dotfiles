@@ -13,7 +13,7 @@ $(BREW_PATH): ${BREW_SRC}
 	# Add setting for PATH in config of shell
 	@/bin/bash -c "`curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh`"
 
-brwe:
+brew:
 	@mkdir -p ${EMPTY_TARGET}/brew	
 
 sync:

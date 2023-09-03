@@ -1,0 +1,4 @@
+font.family:Meiryo
+font.size: 18
+axes.labelsize: 18
+figure.figsize: 12, 8

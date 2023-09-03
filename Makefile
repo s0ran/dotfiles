@@ -33,7 +33,7 @@ endif
 EMPTY_TARGET:=target
 VPATH:=${EMPTY_TARGET}
 
-all:abbr wezterm nvim gh/pubkey
+all:abbr wezterm nvim gh/pubkey matplotlib
 
 build:abbr
 
@@ -54,6 +54,9 @@ wezterm: ${BREW_PATH} ${HOME}/.config
 
 nvim: ${BREW_PATH} ${HOME}/.config
 	@$(MAKE) -e --makefile=Makefiles/nvim.mk all
+
+matplotlib: ${HOME}/.config
+	@$(MAKE) -e --makefile=Makefiles/matplotlib.mk all
 
 gh/pubkey:
 	@$(MAKE) -e --makefile=Makefiles/gh_pubkey.mk all
