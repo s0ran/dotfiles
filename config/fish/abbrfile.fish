@@ -42,10 +42,14 @@ abbr -a -- py python
 abbr -a -- r 'rm -rf'
 abbr -a -- ga 'git add'
 abbr -a --set-cursor='%' -- gcm 'git commit -m "%"'
-abbr -a -- gcar 'git commit --amend --reuse-commit HEAD'
 abbr -a -- glo 'git log --oneline'
 abbr -a -- gt 'git tag'
-abbr -a -- a abbr
 abbr -a --set-cursor='%' -- aa abbr\ -a\ --\ \%\ \'\'
 abbr -a -- gps 'git push'
 abbr -a -- nv nvim
+abbr -a -- ga. 'git add .'
+abbr -a -- gcar 'git commit --amend --reuse-message HEAD'
+abbr -a -- gpsf 'git push -f'
+abbr -a -- a abbr
+abbr -a -- psh 'pipenv shell'
+abbr -a -- abs 'abbr -s > ~/.config/fish/abbrfile.fish'
